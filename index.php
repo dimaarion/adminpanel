@@ -2,6 +2,7 @@
 spl_autoload_register(function ($className) {
     require './admin/classes/' . $className . '.php';
 });
+$controller  = new Controller();
 $sansize = new Sansize();
 $page = $sansize->getrequest('page');
 $id = $sansize->getrequest('id');

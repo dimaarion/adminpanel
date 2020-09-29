@@ -4,13 +4,28 @@
 			<h2>Меню</h2>
 		</div>
 		<div class="col">
-			<h5 class="pt-2 "><?php if($id == 'newmenu'){ echo ': создать новый пункт меню';} ?></h5>
+			<h5 class="pt-2 ">
+				<?php if ($id == 'newmenu') {
+					echo ': создать новый пункт меню';
+				} ?></h5>
 		</div>
 	</div>
-	<form id = "menunain" >
+	<form id="menunain">
 		<?php
-		include_once('./admin/template/mainpanel.php');
-		if($id == 'newmenu'){
+		if ($id !== 'newmenu') {
+			include_once('./admin/template/mainpanel.php');
+		}
+		if ($id == 'newmenu') {
+
+			$controller->saves(
+				[
+					'type' => 'submit',
+					'name' => 'menusave',
+					'value' => 'Сохранить',
+					'saveurls' => '/',
+					'savenames' => 'Закрыть',
+				]
+			);
 			include_once('./admin/template/newmenu.php');
 		}
 		?>
