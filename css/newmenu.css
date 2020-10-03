@@ -1,0 +1,19 @@
+.new_menu_category{
+	cursor: pointer;
+
+}
+.new_menu_category_no{
+	cursor: pointer;
+	display: none;
+}
+.new_menu_category_yes{
+	cursor: pointer;
+	display: block;
+	
+}
+.new_menu_category_linck{
+display: none;
+}
+.new_menu_parent{
+display: none;
+}

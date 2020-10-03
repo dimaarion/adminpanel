@@ -41,10 +41,10 @@ class Menu
             endif;
         }
     }
-    public function menu_recursions($props = [],$u)
+    public function menu_recursions()
     {
 
-        foreach ($props as $key => $value) {
+        foreach ($this->getMenu() as $key => $value) {
             echo '<li class="nav-item"><a class="nav-link" href="'. $value['alias'].'">' . $value['names'] . '</a>';
             if ($value['cild']) :
                 echo '<ul>';

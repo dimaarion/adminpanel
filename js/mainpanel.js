@@ -7,4 +7,5 @@ $(document).ready(()=>{
     	$('#menunain').submit();
     	document.location = '/index.php?page=menu';
     });
+ 
 })

@@ -1,5 +1,5 @@
  <?php
- $menu_class = new Menu();
+
     $menu = [
 [
     "menu_id"=>1,
@@ -23,7 +23,8 @@
     "parent_id"=>0
 ]
     ];
-
+    $menu_class = new Menu();
+    $menu_class->props = $menu;
     $tableMenu = new Database();
     $tableMenu->createTable(
         "CREATE TABLE  menu (
@@ -31,7 +32,7 @@
             menu_names VARCHAR(255) NOT NULL,
             menu_alias VARCHAR(255) NOT NULL,
             menu_title VARCHAR(255) NOT NULL,
-            parent int(11) NOT NULL,
+            parent_id int(11) NOT NULL,
             PRIMARY KEY (`menu_id`))"
         );
     $menuSelect = new DSelect('menu');
@@ -40,6 +41,6 @@
 
  <div class="container menu-top">
      <ul class="nav justify-content-end">
-         <?php $menu_class->menu_recursions($menu,$category); ?>
+         <?php $menu_class->menu_recursions(); ?>
      </ul>
  </div>
