@@ -4,8 +4,8 @@ spl_autoload_register(function ($className) {
 });
 $controller  = new Controller();
 $sansize = new Sansize();
-$new_menu_select = new DSelect('menu');
-$new_menu = $new_menu_select->queryRows();
+//$new_menu_select = new DSelect('menu');
+//$new_menu = $new_menu_select->queryRows();
 $page = $sansize->getrequest('page');
 $id = $sansize->getrequest('id');
 $delid = $sansize->getrequest('delid');

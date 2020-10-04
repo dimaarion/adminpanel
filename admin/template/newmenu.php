@@ -8,11 +8,10 @@ if (@$_REQUEST['new_menu_save']) {
 			'title',
 			'names',
 			'keywords',
-			'description',
+			'descriptions',
 			'parent_id'
 		],
 		[
-			$sansize->getrequest('rout'),
 			$sansize->getrequest('alias'),
 			$sansize->getrequest('title'),
 			$sansize->getrequest('names'),

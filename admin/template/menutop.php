@@ -29,9 +29,11 @@
     $tableMenu->createTable(
         "CREATE TABLE  menu (
             menu_id INT(6) AUTO_INCREMENT NOT NULL,
-            menu_names VARCHAR(255) NOT NULL,
-            menu_alias VARCHAR(255) NOT NULL,
-            menu_title VARCHAR(255) NOT NULL,
+            alias VARCHAR(255) NOT NULL,
+            title VARCHAR(255) NOT NULL,
+            names VARCHAR(255) NOT NULL,
+            keywords VARCHAR(255) NOT NULL,
+            descriptions VARCHAR(255) NOT NULL,
             parent_id int(11) NOT NULL,
             PRIMARY KEY (`menu_id`))"
         );
