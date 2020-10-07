@@ -1,40 +1,53 @@
 <div>
-	<div class="row">
-		<div class="col-1">
-			<h2>Меню</h2>
-		</div>
-		<div class="col">
-			<h5 class="pt-2 ">
-				<?php if ($id == 'newmenu') {
-					echo ': создать новый пункт меню';
-				} ?></h5>
-		</div>
-	</div>
+
 
 	<?php
-	if ($id !== 'newmenu') {
-		include_once('./admin/template/mainpanel.php');
-	}
-	if ($id == 'newmenu') {
-		include_once('./admin/template/newmenu.php');
-	} else { ?>
-		<form id="main_menu">
+	
+	if ($nmenu == 'newmenu') {
+		//include_once('./admin/template/newmenu.php');
+	} else if ($nmenu == 'updatemenu') {
+		//include_once('./admin/template/menuupdate.php');
+	} ?>
+		<form id="main_menu" class="mt-4" action="/index.php" method="post">
+			<div class="mt-4 row">
+				<?php
+				$controller->getLinck(
+					[
+						'savenames' => 'Добавить',
+						'saveurls' => '/index.php?page=menu&nmenu=newmenu',
+						'divclass' => 'col-2 p-0'
+
+					]
+				);
+				$controller->inputs(
+					[
+						'type' => 'submit',
+						'name' => 'new_menu_save',
+						'value' => 'Удалить',
+						'divclass' => 'col-2 p-0'
+
+					]
+				);
+
+				?>
+			</div>
 			<?php
-			foreach ($new_menu as $key => $value) {
-				$controller->inputsCheckbox(
+			array_map(function ($t) {
+				$c = new Controller();
+				$c->inputsCheckbox(
 					[
 						'type' => 'checkbox',
-						'value' => '0',
-						'names' => '<a href = "/index.php?page=menu&nmenu=updatemenu&id='. $value['menu_id'].'">' .$value['names'].'</a>',
-						'name' => 'parent_id',
+						'value' => $t['menu_id'],
+						'names' => '<a href = "/index.php?page=menu&nmenu=updatemenu&id=' . $t['menu_id'] . '">' . $t['names'] . '</a>',
+						'name' => 'delete_menu_id[]',
+						'id' => 'delete_menu_id' . $t['menu_id'],
 						'inputclass' => 'col-1',
 						'divclass' => 'main_menu_cl row'
 					]
 				);
-				
-			}
+			}, $x);
 
 			?>
 		</form>
-	<?php } ?>
+	<?php  ?>
 </div>

@@ -61,4 +61,15 @@ class DUpload
 
         endif;
     }
+
+    public function getImg($d)
+    {
+        $img = scandir($_SERVER['DOCUMENT_ROOT'].$d);
+        $s = [];
+        for ($i = 2; $i < count($img); $i++) {
+            $s[$i] = $img[$i];
+        }
+
+        return   $s;
+    }
 }

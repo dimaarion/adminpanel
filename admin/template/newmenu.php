@@ -1,41 +1,25 @@
-<?php
-if (@$_REQUEST['new_menu_save']) {
-	$new_menu_insert = new DInsert(
-		'menu',
-		[
-			'rout',
-			'alias',
-			'title',
-			'names',
-			'keywords',
-			'descriptions',
-			'parent_id'
-		],
-		[
-			$sansize->getrequest('alias'),
-			$sansize->getrequest('title'),
-			$sansize->getrequest('names'),
-			$sansize->getrequest('keywords'),
-			$sansize->getrequest('description'),
-			$sansize->getrequest('parent_id'),
-		]
-	);
-}
-
-
-?>
 <form id="menunain" action="/index.php?page=menu&id=newmenu&nmenu=new" method="post">
-	<?php
-	$controller->saves(
-		[
-			'type' => 'submit',
-			'name' => 'new_menu_save',
-			'value' => 'Сохранить',
-			'saveurls' => '/',
-			'savenames' => 'Закрыть',
-		]
-	);;
-	?>
+	<div class="mt-4 row">
+		<?php
+
+		$controller->inputs(
+			[
+				'type' => 'submit',
+				'name' => 'new_menu_save',
+				'value' => 'Сохранить',
+
+
+			]
+		);
+		$controller->getLinck(
+			[
+				'saveurls' => '/index.php?page=menu&nmenu=menu',
+				'savenames' => 'Закрыть',
+
+			]
+		);
+		?>
+	</div>
 	<div class="row">
 		<div class="col">
 			<?php
@@ -44,7 +28,7 @@ if (@$_REQUEST['new_menu_save']) {
 					'type' => 'text',
 					'names' => 'Название',
 					'name' => 'names',
-					'divclass' => 'mt-5'
+					
 				]
 			);
 			$controller->inputs(
@@ -68,7 +52,7 @@ if (@$_REQUEST['new_menu_save']) {
 					'name' => 'keywords'
 				]
 			);
-			$controller->inputs(
+			$controller->inputsTextarera(
 				[
 					'type' => 'text',
 					'names' => 'Краткое описание',
@@ -77,46 +61,19 @@ if (@$_REQUEST['new_menu_save']) {
 			);
 			?>
 		</div>
-		<div class="col">
-			<?php
-			$controller->inputs(
-				[
-					'type' => 'text',
-					'value' => 'Нет',
-					'names' => 'Категории',
-					'inputclass' => ' new_menu_category_parent_input',
-					'name' => 'menucategory',
-					'divclass' => 'mt-5 col-8 new_menu_category_input'
-				]
-			);
-			$controller->inputs(
-				[
-					'type' => 'text',
-					'value' => '0',
-					'name' => 'parent_id',
-					'inputclass' => 'col-2 new_menu_category_parent',
-					'divclass' => 'new_menu_parent'
-				]
-			);
-			?>
-			<div class="col" id="new_menu_category">
-				<div class="new_menu_category_no">Нет
-					<div class="new_menu_category_linck">
-						0
-					</div>
-				</div>
-
-				<?php foreach ($new_menu as $key => $value) : ?>
-					<div class="new_menu_category_no">
-						<?php echo $value['names']; ?>
-						<div class="new_menu_category_linck">
-							<?php echo $value['menu_id']; ?>
-						</div>
-					</div>
+		<div class="col mt-2">
+			<label for="parent_id">
+				<h5>Категории</h5>
+			</label>
+			<select class="custom-select" name="parent_id" id="parent_id">
+				<option value="0" selected>Нет</option>
+				<?php foreach ($arr as $key => $value) : ?>
+					<option value="<?php echo $value['menu_id']; ?>"><?php echo $value['names']; ?></option>
 
 				<?php endforeach; ?>
-			</div>
+			</select>
 		</div>
 
 	</div>
+
 </form>

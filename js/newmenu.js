@@ -4,7 +4,9 @@ let arr_ru = ['а', 'б', 'ц', 'д', 'е', 'ф', 'г', 'ш', 'и', 'ж', 'к', 
 let arr_RU = ['А', 'Б', 'Ц', 'Д', 'Е', 'Ф', 'Г', 'Ш', 'И', 'Ж', 'К', 'Л', 'М', 'Н', 'О', 'П', 'У', 'Р', 'С', 'Т', 'У', 'В', 'Ю', 'ИКС', 'Ю', 'З','Ч','Ы',' '];
 
 let arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','се','i','_'];
-let en = arr_en.concat(arr_en);
+let arr_EN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'CE', 'I', '_'];
+
+let en = arr_en.concat(arr_EN);
 let ru = arr_ru.concat(arr_RU);
    $('#names').bind('input',function(e) {
 function grtReplaceInput(e,en,ru) {
@@ -22,21 +24,24 @@ function grtReplaceInput(e,en,ru) {
   		d[i] = en[dfe[i]];
   	}
   }
-  	return d.join('') + '.html';
+	if (d.join('') == 'Glavna' || d.join('') == 'glavna'){
+		return '/';
+	}else{
+		return d.join('') + '.html';
+	}
+  	
 }
 
 $('#alias').val(grtReplaceInput(e,en,ru))
 });
 $('.new_menu_category_input')
 .click(function(e) {
-   $('#new_menu_category .new_menu_category_no')
-      .removeClass('new_menu_category_no noClass')
-      .addClass( "new_menu_category_yes")
+   $('#new_menu_category').css({display:'block'});
+  
+   console.log($('#new_menu_category'))
 });
 $('#new_menu_category div').click(function(e) {
-   $('#new_menu_category .new_menu_category_yes')
-      .removeClass('new_menu_category_yes noClass')
-      .addClass( "new_menu_category_no");
+   $('#new_menu_category').css({ display: 'none' });
    $('.new_menu_category_parent_input').val($.trim(e.target.innerText));
    $('.new_menu_category_parent').val($.trim($(this).children('.new_menu_category_linck').text()));
 

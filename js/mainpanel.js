@@ -4,8 +4,8 @@ $(document).ready(()=>{
     });
 
     $('.deletemenu').click(function() {
-    	$('#menunain').submit();
-    	document.location = '/index.php?page=menu';
+      $('#main_menu').submit();
+    
     });
  
 })
