@@ -284,12 +284,25 @@ class Controller
             $d->delete();
             header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
         }
+        if ($_REQUEST['art_delete']) {
+            $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);
+            $d->delete();
+            header('location:/index.php?page=articles&nmenu=articles');
+        }
+
     }
     
-    public function includer($request,$ifender,$u, $controller, $x,$x2, $arr)
+    public function includer($request,$ifender,$u, $controller, $x = [] , $x2 = [] , $arr = [],$row = [],$id = 1)
     {
         if($request == $ifender){
             return include($u);
+        }
+    }
+
+    public function redirects($request, $ifender, $u)
+    {
+        if ($request == $ifender) {
+            return header('location:'.$u);
         }
     }
 }

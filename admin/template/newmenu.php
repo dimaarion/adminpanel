@@ -1,3 +1,4 @@
+<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', 'добавить пункт меню');?>
 <form id="menunain" action="/index.php?page=menu&id=newmenu&nmenu=new" method="post">
 	<div class="mt-4 row">
 		<?php
@@ -28,7 +29,7 @@
 					'type' => 'text',
 					'names' => 'Название',
 					'name' => 'names',
-					
+
 				]
 			);
 			$controller->inputs(

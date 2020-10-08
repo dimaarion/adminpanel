@@ -1,13 +1,5 @@
 <div>
-
-
-	<?php
-	
-	if ($nmenu == 'newmenu') {
-		//include_once('./admin/template/newmenu.php');
-	} else if ($nmenu == 'updatemenu') {
-		//include_once('./admin/template/menuupdate.php');
-	} ?>
+	<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', ''); ?>
 		<form id="main_menu" class="mt-4" action="/index.php" method="post">
 			<div class="mt-4 row">
 				<?php
