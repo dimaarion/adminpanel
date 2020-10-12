@@ -1,3 +1,5 @@
+<div id = "images" class = "col text-center"></div>
+<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Файлы', ''); ?>
 <form enctype="multipart/form-data" action="/index.php?page=files&nmenu=load" method="post">
   <div class="row mt-3">
     <div class="col-3">
@@ -6,7 +8,7 @@
           'type' => 'submit',
           'name' => 'upload_files',
           'value' => 'Сохранить',
-          
+
         ]
       ); ?>
 
@@ -18,12 +20,14 @@
       </div>
     </div>
   </div>
-<div class="container row mt-3">
-  <?php foreach ($images as $key => $value):?>
-  <div class="col-3">
-    <img class="img-fluid" src="/img/upload/<?php echo $value; ?>" alt="">
+  <div class="container row mt-3 images_block" >
+    <?php foreach ($x as $key => $value) : ?>
+      <div class="col-3 images">
+        <div class="srcimg" title = "Копировать">/img/upload/<?php echo $value; ?></div>
+        <img class="img-fluid" src="/img/upload/<?php echo $value; ?>" alt="">
+
+      </div>
+    <?php endforeach; ?>
   </div>
-  <?php endforeach; ?>
-</div>
 
 </form>

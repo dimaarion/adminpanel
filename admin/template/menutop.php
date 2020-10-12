@@ -9,17 +9,17 @@
 ],[
     "menu_id"=>2,
     "names"=>"Меню",
-    "alias"=> "/index.php?page=menu&nmenu=menu",
+    "alias"=> "/menu/menu",
     "parent_id"=>0
 ],[
     "menu_id"=>3,
     "names"=>"Статьи",
-    "alias"=> "/index.php?page=articles&nmenu=articles",
+    "alias"=> "/articles/articles",
     "parent_id"=>0
 ],[
     "menu_id"=>4,
     "names"=>"Файлы",
-    "alias"=>"/index.php?page=files",
+    "alias"=>"/files",
     "parent_id"=>0
 ]
     ];

@@ -1,0 +1,70 @@
+.images{
+  overflow: hidden;
+  height: 180px;
+  margin-bottom: 0px
+
+}
+.srcimg{
+	position: absolute;
+ 	z-index: 15000;
+ 	background-color: #ffffff;
+ 	height: 55px;
+ 	width: 100%;
+ 	margin-top: 126px;
+ 	cursor: auto;
+  padding-left: 15px;
+  padding-right: 20px;
+
+}
+#svgright, #svgleft{
+  color: #ffffff;
+  font-size: 25pt;
+  background-color:#444444;
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;    
+  padding: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+#svgright:hover{
+  border-radius: 30px;
+  height: 55px;
+  width: 55px;    
+ 
+}
+#svgleft:hover{
+  border-radius: 30px;
+  height: 55px;
+  width: 55px;    
+ }
+ #svgcloseimg:hover{
+  border-radius: 30px;
+  height: 55px;
+  width: 55px;   
+ }
+#svgcloseimg{
+  color: #ffffff;
+  font-size: 25pt;
+  background-color:#444444;
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;    
+  padding: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+  position: absolute;
+  
+}
+.imgrigstkr{
+  float: left;
+}
+.closeimg{
+  float: right;
+  margin-right: 50px;
+}
+
+
+    
+ 
+

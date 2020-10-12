@@ -1,4 +1,5 @@
-<form id="menunain" action="/index.php?page=articles&nmenu=updateart&id=<?php echo $id; ?>" method="post">
+<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Статьи', 'редактировать статью'); ?>
+<form id="menunain" action="/articles/updateart/<?php echo $id; ?>" method="post">
     <div class="mt-4 row">
         <?php
         $controller->inputs(
@@ -21,7 +22,7 @@
         );
         $controller->getLinck(
             [
-                'saveurls' => '/index.php?page=articles&nmenu=articles',
+                'saveurls' => '/articles/articles',
                 'savenames' => 'Закрыть',
 
             ]
@@ -36,7 +37,7 @@
                     'type' => 'text',
                     'names' => 'Название',
                     'name' => 'names',
-                    'value' => $article_id['art_names']
+                    'value' => $x['art_names']
                 ]
             );
             $controller->inputs(
@@ -44,7 +45,7 @@
                     'type' => 'text',
                     'names' => 'Алиас',
                     'name' => 'alias',
-                    'value' => $article_id['art_alias']
+                    'value' => $x['art_alias']
                 ]
             );
             $controller->inputs(
@@ -52,7 +53,7 @@
                     'type' => 'text',
                     'names' => 'Заголовок страницы',
                     'name' => 'title',
-                    'value' => $article_id['art_title']
+                    'value' => $x['art_title']
                 ]
             );
             $controller->inputs(
@@ -60,7 +61,7 @@
                     'type' => 'text',
                     'names' => 'Ключевые слова',
                     'name' => 'keywords',
-                    'value' => $article_id['art_keyword']
+                    'value' => $x['art_keyword']
                 ]
             );
             $controller->inputsTextarera(
@@ -69,7 +70,7 @@
                     'names' => 'Краткое описание страницы',
                     'name' => 'description',
                     'id' => 'description',
-                    'value' => $article_id['art_description']
+                    'value' => $x['art_description']
                 ]
             );
             $controller->inputsTextarera(
@@ -78,7 +79,7 @@
                     'names' => 'Краткое описание статьи',
                     'name' => 'subcontent',
                     'id' => 'editor1',
-                    'value' => $article_id['art_subcontent']
+                    'value' => $x['art_subcontent']
                 ]
             );
             $controller->inputsTextarera(
@@ -87,7 +88,7 @@
                     'names' => 'Текст статьи',
                     'name' => 'content',
                     'id' => 'editor2',
-                    'value' => $article_id['art_content']
+                    'value' => $x['art_content']
                 ]
             );
             ?>

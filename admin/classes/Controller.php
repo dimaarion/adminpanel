@@ -190,7 +190,7 @@ class Controller
             );
 
             $this->err = $din->err;
-            header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+            header('location:/menu/updatemenu/' . $sansize->getrequest('menu'));
         }
         // добавление статьи к меню
         if (@$_REQUEST['update_menu_art_save']) {
@@ -208,7 +208,7 @@ class Controller
 
                     ]
                 );
-                header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+                header('location:/menu/updatemenu/' . $sansize->getrequest('menu'));
             } catch (\Throwable $th) {
                 $this->err = 'Ошибка добавления статьи';
             }
@@ -241,7 +241,7 @@ class Controller
             );
 
             $this->err = $din->err;
-            header('location:/index.php?page=articles&nmenu=updateart&id=' . $sansize->getrequest('update_art_id'));
+            header('location:/articles/updateart/' . $sansize->getrequest('update_art_id'));
         }
         //Добавление статьи
         if (@$_REQUEST['new_art_save']) {
@@ -277,19 +277,32 @@ class Controller
         if ($_REQUEST['delete_menu_id']) {
             $d = new DDelete('menu', 'menu_id', $_REQUEST['delete_menu_id']);
             $d->delete();
-            header('location:/index.php?page=menu&nmenu=menu');
+            header('location:/menu/menu');
         }
         if ($_REQUEST['update_menu_art_delete']) {
             $d = new DDelete('art_menu', 'articles', [$_REQUEST['menu_articles']]);
             $d->delete();
-            header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+            header('location:/menu/updatemenu/' . $sansize->getrequest('menu'));
         }
+        if ($_REQUEST['art_delete']) {
+            $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);
+            $d->delete();
+            header('location:/articles/articles');
+        }
+
     }
     
-    public function includer($request,$ifender,$u, $controller, $x,$x2, $arr)
+    public function includer($request,$ifender,$u, $controller, $x = [] , $x2 = [] , $arr = [],$row = [],$id = 1)
     {
         if($request == $ifender){
             return include($u);
+        }
+    }
+
+    public function redirects($request, $ifender, $u)
+    {
+        if ($request == $ifender) {
+            return header('location:'.$u);
         }
     }
 }

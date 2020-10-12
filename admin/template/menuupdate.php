@@ -1,5 +1,8 @@
-<?php $menu_update_parent = $update_menu_parent_select->queryRow('menu_id', $menu_update['parent_id']); ?>
-<form id="menunain" action="/index.php?page=menu&id=newmenu&nmenu=updatemenu&id=<?php echo $id; ?>" method="post">
+<?php
+$menu_update_parent = $arr->queryRow('menu_id', $row['parent_id']);
+$controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', 'редактировать пункт меню');
+?>
+<form id="menunain" action="/menu/updatemenu/<?php echo $id; ?>" method="post">
     <div class="mt-4 row">
         <?php
 
@@ -14,7 +17,7 @@
         );
         $controller->getLinck(
             [
-                'saveurls' => '/index.php?page=menu&nmenu=menu',
+                'saveurls' => '/menu/menu',
                 'savenames' => 'Закрыть',
 
             ]
@@ -30,7 +33,7 @@
                     'names' => 'Название',
                     'name' => 'names',
                     'divclass' => '',
-                    'value' => $menu_update['names']
+                    'value' => $row['names']
                 ]
             );
             $controller->inputs(
@@ -38,7 +41,7 @@
                     'type' => 'text',
                     'names' => 'Алиас',
                     'name' => 'alias',
-                    'value' => $menu_update['alias']
+                    'value' => $row['alias']
                 ]
             );
             $controller->inputs(
@@ -46,7 +49,7 @@
                     'type' => 'text',
                     'names' => 'Заголовок страницы',
                     'name' => 'title',
-                    'value' => $menu_update['title']
+                    'value' => $row['title']
                 ]
             );
             $controller->inputs(
@@ -54,14 +57,14 @@
                     'type' => 'text',
                     'names' => 'Ключевые слова',
                     'name' => 'keywords',
-                    'value' => $menu_update['keywords']
+                    'value' => $row['keywords']
                 ]
             );
             $controller->inputsTextarera(
                 [
                     'names' => 'Краткое описание',
                     'name' => 'description',
-                    'value' => $menu_update['descriptions']
+                    'value' => $row['descriptions']
                 ]
             );
             ?>
@@ -108,20 +111,20 @@
                 </div>
                 <div class="col">
                     <?php
-                    array_map(function ($x) {
+                    array_map(function ($params) {
                         $c = new Controller();
                         $c->inputsCheckbox(
                             [
                                 'type' => 'checkbox',
-                                'value' => $x['art_id'],
-                                'names' => $x['art_names'],
+                                'value' => $params['art_id'],
+                                'names' => $params['art_names'],
                                 'name' => 'menu_articles',
-                                'id' => 'update_menu_art' . $x['art_id'],
+                                'id' => 'update_menu_art' . $params['art_id'],
                                 'inputclass' => 'col-1',
                                 'divclass' => 'row'
                             ]
                         );
-                    }, $art_menu);
+                    }, $x);
 
                     ?>
                 </div>
@@ -132,7 +135,7 @@
                         <h5 class="h5 mt-4">Привязать статью</h5>
                     </div>
                     <div class="col">
-                        <?php 
+                        <?php
                         $controller->inputs(
                             [
                                 'type' => 'submit',
@@ -146,7 +149,7 @@
                                 'type' => 'hidden',
                                 'name' => 'menu',
                                 'value' => $id,
-                                
+
                             ]
                         );
                         ?>
@@ -156,20 +159,20 @@
                 <div class="col new_menu_art_bl">
 
                     <?php
-                    array_map(function ($x) {
+                    array_map(function ($params) {
                         $c = new Controller();
                         $c->inputsCheckbox(
                             [
                                 'type' => 'checkbox',
-                                'value' => $x['art_id'],
-                                'names' => $x['art_names'],
+                                'value' => $params['art_id'],
+                                'names' => $params['art_names'],
                                 'name' => 'articles',
-                                'id' => 'new_menu_art' . $x['art_id'],
+                                'id' => 'new_menu_art' . $params['art_id'],
                                 'inputclass' => 'col-1',
                                 'divclass' => 'new_menu_art row'
                             ]
                         );
-                    }, $article);
+                    }, $x2);
 
                     ?>
                 </div>

@@ -1,20 +1,12 @@
 <div>
-
-
-	<?php
-	
-	if ($nmenu == 'newmenu') {
-		//include_once('./admin/template/newmenu.php');
-	} else if ($nmenu == 'updatemenu') {
-		//include_once('./admin/template/menuupdate.php');
-	} ?>
+	<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', ''); ?>
 		<form id="main_menu" class="mt-4" action="/index.php" method="post">
 			<div class="mt-4 row">
 				<?php
 				$controller->getLinck(
 					[
 						'savenames' => 'Добавить',
-						'saveurls' => '/index.php?page=menu&nmenu=newmenu',
+						'saveurls' => '/menu/newmenu',
 						'divclass' => 'col-2 p-0'
 
 					]
@@ -38,7 +30,7 @@
 					[
 						'type' => 'checkbox',
 						'value' => $t['menu_id'],
-						'names' => '<a href = "/index.php?page=menu&nmenu=updatemenu&id=' . $t['menu_id'] . '">' . $t['names'] . '</a>',
+						'names' => '<a href = "/menu/updatemenu/' . $t['menu_id'] . '">' . $t['names'] . '</a>',
 						'name' => 'delete_menu_id[]',
 						'id' => 'delete_menu_id' . $t['menu_id'],
 						'inputclass' => 'col-1',
