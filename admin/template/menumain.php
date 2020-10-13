@@ -6,7 +6,7 @@
 				$controller->getLinck(
 					[
 						'savenames' => 'Добавить',
-						'saveurls' => '/menu/newmenu',
+						'saveurls' => '/index.php?page=menu&nmenu=newmenu',
 						'divclass' => 'col-2 p-0'
 
 					]
@@ -30,7 +30,7 @@
 					[
 						'type' => 'checkbox',
 						'value' => $t['menu_id'],
-						'names' => '<a href = "/menu/updatemenu/' . $t['menu_id'] . '">' . $t['names'] . '</a>',
+						'names' => '<a href = "/index.php?page=menu&nmenu=updatemenu&id=' . $t['menu_id'] . '">' . $t['names'] . '</a>',
 						'name' => 'delete_menu_id[]',
 						'id' => 'delete_menu_id' . $t['menu_id'],
 						'inputclass' => 'col-1',

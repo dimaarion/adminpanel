@@ -35,12 +35,14 @@ $controller->deleteTable($sansize);
 $files_upload = new DUpload('files', '/img/upload/');
 $images = $files_upload->getImg('/img/upload');
 //----------------------------------------------------------------------------------------------------------------------------
-$controller->redirects($nmenu, 'new', '/menu/menu');
-$controller->redirects($nmenu, 'newart', '/articles/articles');
-$controller->redirects($nmenu, 'load','/files');
+$controller->redirects($nmenu, 'new', '/index.php?page=menu&nmenu=menu');
+$controller->redirects($nmenu, 'newart', '/index.php?page=articles&nmenu=articles');
+$controller->redirects($nmenu, 'load','/index.php?page=files');
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <?php $controller->includer(true, true, './admin/template/header.php', $controller, $controller->dirExt('css'), $controller->dirExt('js'), 'Административная панель сайта'); ?>
 </head>
@@ -55,30 +57,23 @@ $controller->redirects($nmenu, 'load','/files');
                 <?php $controller->includer(true, true, './admin/template/menutop.php', $controller); ?>
             </div>
         </div>
-        <?php
+        <?php 
          $test = 'test';
-         $controller->includer($nmenu, 'menu', './admin/template/menumain.php', $controller, $new_menu,  $x2, $arr,$row,$id);
+         $controller->includer($nmenu, 'menu', './admin/template/menumain.php', $controller, $new_menu,  $x2, $arr,$row,$id); 
          $controller->includer($nmenu, 'newmenu', './admin/template/newmenu.php', $controller, $x, $x2,$new_menu,$row, $id);
          $controller->includer($nmenu, 'updatemenu', './admin/template/menuupdate.php', $controller, $art_menu, $article, $update_menu_parent_select,$menu_update, $id);
          $controller->includer($nmenu, 'articles', './admin/template/artmain.php', $controller, $article, $x2,$arr,$row, $id);
          $controller->includer($nmenu, 'artnew', './admin/template/artnew.php', $controller);
          $controller->includer($nmenu, 'updateart', './admin/template/artupdate.php', $controller, $article_id);
          $controller->includer($page, 'files', './admin/template/files.php', $controller, $images);
-         $controller->includer($nmenu, 'artnew', './admin/template/files.php', $controller, $images);
-          $controller->includer($nmenu, 'updateart', './admin/template/files.php', $controller, $images);
          ?>
     </div>
     <?php $controller->includer(true, true, './admin/template/footer.php', $controller);?>
     <script>
-
-        if($('#editor1').length != 0){
-             CKEDITOR.replace('editor1');
-        }
-       if($('#editor2').length != 0){
-             CKEDITOR.replace('editor2');
-        }
-
+        CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>

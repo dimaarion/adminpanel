@@ -6,7 +6,7 @@
             $controller->getLinck(
                 [
                     'savenames' => 'Добавить',
-                    'saveurls' => '/articles/artnew',
+                    'saveurls' => '/index.php?page=articles&nmenu=artnew',
                     'divclass' => 'col-2 p-0'
 
                 ]
@@ -30,7 +30,7 @@
                 [
                     'type' => 'checkbox',
                     'value' => $t['art_id'],
-                    'names' => '<a href = "/articles/updateart/' . $t['art_id'] . '">' . $t['art_names'] . '</a>',
+                    'names' => '<a href = "/index.php?page=articles&nmenu=updateart&id=' . $t['art_id'] . '">' . $t['art_names'] . '</a>',
                     'name' => 'delete_art_id[]',
                     'id' => 'delete_art_id' . $t['art_id'],
                     'inputclass' => 'col-1',

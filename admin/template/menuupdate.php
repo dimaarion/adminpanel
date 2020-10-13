@@ -2,7 +2,7 @@
 $menu_update_parent = $arr->queryRow('menu_id', $row['parent_id']);
 $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', 'редактировать пункт меню');
 ?>
-<form id="menunain" action="/menu/updatemenu/<?php echo $id; ?>" method="post">
+<form id="menunain" action="/index.php?page=menu&id=newmenu&nmenu=updatemenu&id=<?php echo $id; ?>" method="post">
     <div class="mt-4 row">
         <?php
 
@@ -17,7 +17,7 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
         );
         $controller->getLinck(
             [
-                'saveurls' => '/menu/menu',
+                'saveurls' => '/index.php?page=menu&nmenu=menu',
                 'savenames' => 'Закрыть',
 
             ]

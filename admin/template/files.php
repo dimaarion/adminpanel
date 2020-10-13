@@ -23,9 +23,7 @@
   <div class="container row mt-3 images_block" >
     <?php foreach ($x as $key => $value) : ?>
       <div class="col-3 images">
-        <div class="srcimg" title = "Копировать">/img/upload/<?php echo $value; ?></div>
         <img class="img-fluid" src="/img/upload/<?php echo $value; ?>" alt="">
-
       </div>
     <?php endforeach; ?>
   </div>

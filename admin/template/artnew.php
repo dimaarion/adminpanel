@@ -15,7 +15,7 @@
             );
             $controller->getLinck(
                 [
-                    'saveurls' => '/articles/articles',
+                    'saveurls' => '/index.php?page=articles&nmenu=articles',
                     'savenames' => 'Закрыть',
 
                 ]

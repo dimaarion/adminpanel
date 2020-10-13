@@ -1,6 +1,0 @@
-ErrorDocument 404 /err.php
-
-RewriteEngine On
-RewriteRule ^([a-z-_A-Z]+)$ ?page=$1
-RewriteRule ^([a-z-_A-Z]+)/([a-z-_A-Z]+)$ ?page=$1&nmenu=$2
-RewriteRule ^([a-z-_A-Z]+)/([a-z-_A-Z]+)/([0-9]+)$ ?page=$1&nmenu=$2&id=$3

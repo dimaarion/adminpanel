@@ -1,5 +1,5 @@
 <?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Статьи', 'редактировать статью'); ?>
-<form id="menunain" action="/articles/updateart/<?php echo $id; ?>" method="post">
+<form id="menunain" action="/index.php?page=articles&nmenu=updateart&id=<?php echo $id; ?>" method="post">
     <div class="mt-4 row">
         <?php
         $controller->inputs(
@@ -22,7 +22,7 @@
         );
         $controller->getLinck(
             [
-                'saveurls' => '/articles/articles',
+                'saveurls' => '/index.php?page=articles&nmenu=articles',
                 'savenames' => 'Закрыть',
 
             ]
