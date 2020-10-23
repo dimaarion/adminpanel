@@ -5,6 +5,7 @@ class Controller
     public $err;
     public $saveurls;
     public $savenames;
+
     public function inputs($inputs)
     {
         echo '<div class="form-group '
@@ -186,11 +187,11 @@ class Controller
                     $sansize->getrequest('description'),
                     $sansize->getrequest('parent_id'),
                 ],
-                $sansize->getrequest('menu'),
+                $sansize->getrequest('menu')
             );
 
             $this->err = $din->err;
-            header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
         }
         // добавление статьи к меню
         if (@$_REQUEST['update_menu_art_save']) {
@@ -208,7 +209,7 @@ class Controller
 
                     ]
                 );
-                header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+                header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
             } catch (\Throwable $th) {
                 $this->err = 'Ошибка добавления статьи';
             }
@@ -237,11 +238,11 @@ class Controller
                     htmlentities($_REQUEST['content'], ENT_HTML5)
 
                 ],
-                $sansize->getrequest('update_art_id'),
+                $sansize->getrequest('update_art_id')
             );
 
             $this->err = $din->err;
-            header('location:/index.php?page=articles&nmenu=updateart&id=' . $sansize->getrequest('update_art_id'));
+            header('location:/adminpanel/articles/updateart/' . $sansize->getrequest('update_art_id'));
         }
         //Добавление статьи
         if (@$_REQUEST['new_art_save']) {
@@ -277,22 +278,27 @@ class Controller
         if ($_REQUEST['delete_menu_id']) {
             $d = new DDelete('menu', 'menu_id', $_REQUEST['delete_menu_id']);
             $d->delete();
-            header('location:/index.php?page=menu&nmenu=menu');
+            header('location:/adminpanel/menu/menu');
         }
         if ($_REQUEST['update_menu_art_delete']) {
             $d = new DDelete('art_menu', 'articles', [$_REQUEST['menu_articles']]);
             $d->delete();
-            header('location:/index.php?page=menu&nmenu=updatemenu&id=' . $sansize->getrequest('menu'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
         }
         if ($_REQUEST['art_delete']) {
             $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);
             $d->delete();
-            header('location:/index.php?page=articles&nmenu=articles');
+            header('location:/adminpanel/articles/articles');
+
         }
 
+       if($_REQUEST['deleteFiles']){
+            $f = preg_replace('/http:\/\/'.$_SERVER['HTTP_HOST'].'/', '..', $_REQUEST['deleteFiles']);
+            @unlink($f);
+       }
     }
-    
-    public function includer($request,$ifender,$u, $controller, $x = [] , $x2 = [] , $arr = [],$row = [],$id = 1)
+
+    public function includer($request,$ifender,$u, $controller, $x = [] , $x2 = [] , $arr = [],$row = [],$id = 1,$id2 = [])
     {
         if($request == $ifender){
             return include($u);
@@ -302,7 +308,25 @@ class Controller
     public function redirects($request, $ifender, $u)
     {
         if ($request == $ifender) {
-            return header('location:'.$u);
+          return header('location:'.$u);
+        }
+    }
+
+    public function indexPage($alias,$prist)
+    {
+        if($alias == ''){
+            return '/';
+        }else{
+            return $alias.$prist;
+        }
+    }
+
+    public function ifElseContent($value1,$value2)
+    {
+        if(isset($value1)){
+           return $value1;
+        }else{
+           return $value2;
         }
     }
 }
