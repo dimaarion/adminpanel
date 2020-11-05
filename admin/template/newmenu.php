@@ -1,5 +1,5 @@
 <?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', 'добавить пункт меню');?>
-<form id="menunain" action="/index.php?page=menu&id=newmenu&nmenu=new" method="post">
+<form id="menunain" action="/adminpanel/menu/newmenu/new" method="post">
 	<div class="mt-4 row">
 		<?php
 
@@ -14,7 +14,7 @@
 		);
 		$controller->getLinck(
 			[
-				'saveurls' => '/index.php?page=menu&nmenu=menu',
+				'saveurls' => '/adminpanel/menu/menu',
 				'savenames' => 'Закрыть',
 
 			]

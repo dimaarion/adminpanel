@@ -56,10 +56,11 @@ class DSelect
         return $arr;
     }
 
-    public function queryRowJ($wheres,$id)
+    public function queryRowJ($where,$id)
     {
+        $where = $where . '=?';
         $tables = $this->tables;
-        $arr =  $this->db->getRow("SELECT * FROM $tables WHERE $wheres",[$id]);
+        $arr =  $this->db->getRows("SELECT * FROM $tables WHERE $where", [$id]);
         $this->db->Disconnect();
         return $arr;
     }

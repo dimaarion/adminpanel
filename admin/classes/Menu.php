@@ -1,7 +1,7 @@
 <?php
 class Menu
 {
-    public $props;
+    public $props = [];
     public $array_menu;
     public $menu = array();
 
@@ -19,7 +19,11 @@ class Menu
     }
     public function genElement(&$treeElem, $menu)
     {
-        foreach ($treeElem as $key => $value) {
+        $arrMenu = $treeElem;
+        if (!isset($arrMenu)) {
+            $arrMenu = [];
+        }
+        foreach ($arrMenu as $key => $value) {
             if (!isset($value['cild'])) {
                 $treeElem[$key]['cild'] = array();
             }
@@ -41,11 +45,21 @@ class Menu
             endif;
         }
     }
-    public function menu_recursions()
+    public function menu_recursions($alias = '', $color_active = '')
     {
-
-        foreach ($this->getMenu() as $key => $value) {
-            echo '<li class="nav-item"><a class="nav-link" href="'. $value['alias'].'">' . $value['names'] . '</a>';
+    $arrMenu = $this->getMenu();
+    if(!isset($arrMenu)){
+    $arrMenu = [];
+    }
+    
+        foreach ($arrMenu as $key => $value) {
+            if($value['alias'] == $alias){
+                $c = $color_active;
+            }else{
+                $c = '';
+            }
+            echo '<li class="nav-item"><a class="nav-link" '.$c.'  href="'. $value['alias'].'">' . $value['names'] . '</a>';
+            echo "<div></div>";
             if ($value['cild']) :
                 echo '<ul>';
                 $this->child($value['cild'], $value['alias']);

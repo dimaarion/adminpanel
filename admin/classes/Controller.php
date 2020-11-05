@@ -5,6 +5,7 @@ class Controller
     public $err;
     public $saveurls;
     public $savenames;
+    public $errFiles = 'Такого файла или каталога не существует';
 
     public function inputs($inputs)
     {
@@ -92,15 +93,29 @@ class Controller
     }
     public function dirExt($u)
     {
-        $newdir = [];
-        $css = scandir($u);
-        foreach ($css as $key => $value) {
-            if ($value == '.' || $value == '..') {
-            } else {
-                $newdir[$key] = $value;
+        if (file_exists($u)) {
+            $newdir = [];
+            $css = scandir($u);
+            foreach ($css as $key => $value) {
+                if ($value == '.' || $value == '..') {
+                } else {
+                    $newdir[$key] = $value;
+                }
             }
+            return $newdir;
+        } else {
+            echo $this->errFiles;
         }
-        return $newdir;
+    }
+
+    public function dirFileName($nameDir)
+    {
+      $r =  array_map(function ($x) {
+            preg_match('/\w+\.\w+\.\w+\.css|\w+\.\w+\.\w+\.js/', $x, $p);
+            return $p[0];
+        }, $nameDir); 
+        
+        return array_unique($r);
     }
 
     public function createTables()
@@ -137,6 +152,18 @@ class Controller
             art_content text(255) NOT NULL,
             PRIMARY KEY (`art_id`))"
         );
+        $tableMenu->createTable(
+            "CREATE TABLE  prais (
+            id INT(11) AUTO_INCREMENT NOT NULL,
+            profiles VARCHAR(255) NOT NULL,
+            okno VARCHAR(255) NOT NULL,
+            stvorka VARCHAR(255) NOT NULL,
+            width VARCHAR(255) NOT NULL,
+            height VARCHAR(255) NOT NULL,
+            znacenie text(255) NOT NULL,
+            PRIMARY KEY (`id`))"
+        );
+
     }
 
     public function insertTable($sansize)
@@ -271,6 +298,59 @@ class Controller
 
             $this->err = $din->err;
         }
+        //calculator
+        if ($_REQUEST['calculatorRezultSave'] && $sansize->getrequestInt('calculatorRezult')) {
+            $din =  new DUpdate(
+                'prais',
+                [
+                    'znacenie',
+                    'id'
+                ],
+                [
+                    $sansize->getrequestInt('calculatorRezult'),
+                ],
+                $sansize->getrequestInt('calculatorid')
+            );
+
+            $this->err = $din->err;
+            header('location:/adminpanel/calculator/' . $sansize->getrequest('nmenu') . '/' . $sansize->getrequest('id') . '/' . $sansize->getrequest('id2') . '/'. $sansize->getrequest('calculatorRezult').'/'. $sansize->getrequest('calculatorid'));
+        }
+        //calculator sill
+       
+        if ($_REQUEST['calculatorRezultSaveSill'] && $sansize->getrequestInt('calculatorRezultSill')) {
+            $din =  new DUpdate(
+                'grid',
+                [
+                    $sansize->getrequest('id3'),
+                    'grid_id'
+                ],
+                [
+                    $sansize->getrequestInt('calculatorRezultSill'),
+                ],
+                $sansize->getrequestInt('calculatoridSill')
+            );
+
+            $this->err = $din->err;
+           header('location:/adminpanel/calculator/' . $sansize->getrequest('nmenu') .'/' . $sansize->getrequest('calculatoridSill') . '/' . $sansize->getrequest('calculatorRezultSill').'/'. $sansize->getrequest('id3'));
+        }
+        //calculator tide
+
+        if ($_REQUEST['calculatorRezultSaveTide'] && $sansize->getrequestInt('calculatorRezultTide')) {
+            $din =  new DUpdate(
+                'tide',
+                [
+                    $sansize->getrequest('id3'),
+                    'tide_id'
+                ],
+                [
+                    $sansize->getrequestInt('calculatorRezultTide'),
+                ],
+                $sansize->getrequestInt('calculatoridTide')
+            );
+
+            $this->err = $din->err;
+            header('location:/adminpanel/calculator/' . $sansize->getrequest('nmenu') . '/' . $sansize->getrequest('calculatoridTide') . '/' . $sansize->getrequest('calculatorRezultTide') . '/' . $sansize->getrequest('id3'));
+        }
     }
 
     public function deleteTable($sansize)
@@ -289,18 +369,17 @@ class Controller
             $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);
             $d->delete();
             header('location:/adminpanel/articles/articles');
-
         }
 
-       if($_REQUEST['deleteFiles']){
-            $f = preg_replace('/http:\/\/'.$_SERVER['HTTP_HOST'].'/', '..', $_REQUEST['deleteFiles']);
+        if ($_REQUEST['deleteFiles']) {
+            $f = preg_replace('/http:\/\/' . $_SERVER['HTTP_HOST'] . '/', '..', $_REQUEST['deleteFiles']);
             @unlink($f);
-       }
+        }
     }
 
-    public function includer($request,$ifender,$u, $controller, $x = [] , $x2 = [] , $arr = [],$row = [],$id = 1,$id2 = [])
+    public function includer($request, $ifender, $u, $controller, $x = [], $x2 = [], $arr = [], $row = [], $id = 1, $id2 = [], $x3 = [])
     {
-        if($request == $ifender){
+        if ($request == $ifender) {
             return include($u);
         }
     }
@@ -308,25 +387,66 @@ class Controller
     public function redirects($request, $ifender, $u)
     {
         if ($request == $ifender) {
-          return header('location:'.$u);
+            return header('location:' . $u);
         }
     }
 
-    public function indexPage($alias,$prist)
+    public function indexPage($alias, $prist)
     {
-        if($alias == ''){
+        if ($alias == '') {
             return '/';
-        }else{
-            return $alias.$prist;
+        } else {
+            return $alias . $prist;
         }
     }
 
-    public function ifElseContent($value1,$value2)
+    public function ifElseContent($value1, $value2)
     {
-        if(isset($value1)){
-           return $value1;
+        if (isset($value1)) {
+            return $value1;
+        } else {
+            return $value2;
+        }
+    }
+
+    public function calculator_profile($var)
+    {
+        if ($var == 'ru') {
+            return 'Россия, Турция';
+        } elseif ($var == '3k') {
+            return '3-камерный';
+        } elseif ($var == '5k') {
+            return '5-камерный';
+        }
+    }
+
+    public function calculator_okno($var)
+    {
+        if ($var == 'oo') {
+            return 'Одностворчатое окно';
+        } elseif ($var == 'do') {
+            return 'Двустворчатое окно';
+        } elseif ($var == 'to') {
+            return 'Трехстворчатое окно';
+        }
+    }
+    public function calculator_stvorka($var)
+    {
+        if ($var == 'sg') {
+            return 'глухое';
+        } elseif ($var == 'sp') {
+            return 'Поворотное';
+        } elseif ($var == 'spo') {
+            return 'Поворотно-откидное';
+        }
+    }
+
+    public function twocorrectthird($item1, $item2, $rezult1,$rezult2)
+    {
+        if($item1 == $item2){
+            return $rezult1;
         }else{
-           return $value2;
+            return $rezult2;
         }
     }
 }

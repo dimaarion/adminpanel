@@ -1,15 +1,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="/jquery/jquery.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="/bs-custom-file-input/bs-custom-file-input.js"></script>
     <?php foreach ($x as $key => $value) : ?>
-        <link rel="stylesheet" href="/css/<?php echo $value; ?>" />
-    <?php endforeach; ?>
-    <?php foreach ($x2 as $key => $value) : ?>
-        <script src="/js/<?php echo $value; ?>"></script>
+        <link rel="stylesheet" href="/adminpanel/css/<?php echo $value; ?>" />
     <?php endforeach; ?>
 
-    <script src="/ckeditor/ckeditor.js"></script>
-    <title><?php echo $arr?></title>
+    <script src="/adminpanel/jquery/jquery.js"></script>
+
+    <?php foreach ($x2 as $key => $value) : ?>
+        <script src="/adminpanel/js/<?php echo $value; ?>"></script>
+    <?php endforeach; ?>
+    <script src="/adminpanel/bs-custom-file-input/bs-custom-file-input.js"></script>
+    <title><?php echo $arr ?></title>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Commissioner:wght@100;200;300;400;500;600;900&family=Krona+One&family=Montserrat:wght@100&family=Open+Sans:wght@300&family=Roboto:wght@100&display=swap);
+    </style>
+    <?php
+    foreach ($controller->dirFileName($controller->dirExt('./static/css')) as $key => $value):?>
+    <link href="/adminpanel/static/css/<?php echo $value ?>" rel="stylesheet">
+    <?php endforeach; ?>

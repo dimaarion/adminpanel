@@ -1,12 +1,14 @@
 <?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Статьи', 'редактировать статью'); ?>
-<form id="menunain" action="/index.php?page=articles&nmenu=updateart&id=<?php echo $id; ?>" method="post">
+
+<form id="menunain" action="/adminpanel/articles/updateart/<?php echo $x['art_id']; ?>" method="post">
+
     <div class="mt-4 row">
         <?php
         $controller->inputs(
             [
                 'type' => 'hidden',
                 'name' => 'update_art_id',
-                'value' => $id,
+                'value' => $x['art_id'],
 
 
             ]
@@ -22,7 +24,7 @@
         );
         $controller->getLinck(
             [
-                'saveurls' => '/index.php?page=articles&nmenu=articles',
+                'saveurls' => '/adminpanel/articles/articles',
                 'savenames' => 'Закрыть',
 
             ]
@@ -73,28 +75,8 @@
                     'value' => $x['art_description']
                 ]
             );
-            $controller->inputsTextarera(
-                [
-                    'type' => 'text',
-                    'names' => 'Краткое описание статьи',
-                    'name' => 'subcontent',
-                    'id' => 'editor1',
-                    'value' => $x['art_subcontent']
-                ]
-            );
-            $controller->inputsTextarera(
-                [
-                    'type' => 'text',
-                    'names' => 'Текст статьи',
-                    'name' => 'content',
-                    'id' => 'editor2',
-                    'value' => $x['art_content']
-                ]
-            );
+            $controller->includer(true, true, './admin/template/redactor.php', $controller, html_entity_decode($x['art_subcontent'], ENT_HTML5), html_entity_decode($x['art_content'], ENT_HTML5));
             ?>
         </div>
-
-
     </div>
-
 </form>
