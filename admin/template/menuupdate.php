@@ -78,7 +78,7 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
                 </label>
                 <select class="custom-select" name="parent_id" id="parent_id">
                     <option value="<?php if ($menu_update_parent['names']) {
-                                        echo $menu_update_parent['names'];
+                                        echo $menu_update_parent['menu_id'];
                                     } else {
                                         echo '0';
                                     }; ?>" selected> <?php if ($menu_update_parent['menu_id']) {

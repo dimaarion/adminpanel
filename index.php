@@ -32,7 +32,6 @@ $calculator_select_profile = new DSelect('prais');
 $sill = $calculator_select_grid->queryRows();
 $tide = $calculator_select_tide->queryRows();
 
-$calculator_profile = $calculator_select_profile->queryRowWhere("profiles = '". $controller->calculator_profile($nmenu) ."' AND okno = '". $controller->calculator_okno($id). "' AND stvorka = '". $controller->calculator_stvorka($id2)."'");
 //Меню + Статьи
 $art_menu_select = new DSelect('menu,article,art_menu');
 $art_menu = $art_menu_select->queryRowWhere('menu.menu_id = art_menu.menu AND art_id = art_menu.articles AND menu.menu_id =' . $id);
@@ -80,7 +79,7 @@ $controller->redirects($nmenu, 'load', '/adminpanel/files');
         $controller->includer($page, 'files', './admin/template/files.php', $controller, $images);
         $controller->includer($nmenu, 'artnew', './admin/template/files.php', $controller, $images);
         $controller->includer($nmenu, 'updateart', './admin/template/files.php', $controller, $images);
-        $controller->includer($page, 'calculator', './admin/template/calculator.php', $controller, $sill, $calculator_profile, $sansize,$tide);
+
         ?>
     </div>
     <?php $controller->includer(true, true, './admin/template/footer.php', $controller); ?>

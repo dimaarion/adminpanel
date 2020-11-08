@@ -6,7 +6,7 @@ let arr_RU = ['А', 'Б', 'Ц', 'Д', 'Е', 'Ф', 'Г', 'Ш', 'И', 'Ж', 'К', 
 let arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'u', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','се','i','_'];
 let arr_EN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'U', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'CE', 'I', '_'];
 
-let en = arr_en.concat(arr_EN);
+let en = arr_en.concat(arr_en);
 let ru = arr_ru.concat(arr_RU);
    $('#names').bind('input',function(e) {
 function grtReplaceInput(e,en,ru) {

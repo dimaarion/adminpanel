@@ -4,27 +4,22 @@
         [
             "menu_id" => 1,
             "names" => "Главная",
-            "alias" => "/adminpanel",
+            "alias" => "adminpanel",
             "parent_id" => 0
         ], [
             "menu_id" => 2,
             "names" => "Меню",
-            "alias" => "/adminpanel/menu/menu",
+            "alias" => "adminpanel/menu/menu",
             "parent_id" => 0
         ], [
             "menu_id" => 3,
             "names" => "Статьи",
-            "alias" => "/adminpanel/articles/articles",
+            "alias" => "adminpanel/articles/articles",
             "parent_id" => 0
         ], [
             "menu_id" => 4,
             "names" => "Файлы",
-            "alias" => "/adminpanel/files",
-            "parent_id" => 0
-        ], [
-            "menu_id" => 5,
-            "names" => "Калькулятор",
-            "alias" => "/adminpanel/calculator/ru/oo/sg",
+            "alias" => "adminpanel/files",
             "parent_id" => 0
         ]
     ];

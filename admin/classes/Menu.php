@@ -36,7 +36,7 @@ class Menu
     public function child($x, $u)
     {
         foreach ($x as $key => $value) {
-                echo  '<li class="pod nav"><a href="'. $value['alias'] .'" class="nav-link pb-0 pl-0 ml-0">' . $value['names'] . '</a>';
+            echo  '<li class="pod nav"><a href="' . $value['alias'] . '" class="nav-link pb-0 pl-0 ml-0">' . $value['names'] . '</a>';
             if ($value['cild']) :
                 echo '<ul>';
                 $this->child($value['cild'], $u);
@@ -47,28 +47,33 @@ class Menu
     }
     public function menu_recursions($alias = '', $color_active = '')
     {
-    $arrMenu = $this->getMenu();
-    if(!isset($arrMenu)){
-    $arrMenu = [];
-    }
-    
+        $arrMenu = $this->getMenu();
+        if (!isset($arrMenu)) {
+            $arrMenu = [];
+        }
+
         foreach ($arrMenu as $key => $value) {
-            if($value['alias'] == $alias){
+
+            if ($value['alias'] == $alias) {
                 $c = $color_active;
-            }else{
+            } else {
                 $c = '';
             }
-            echo '<li class="nav-item"><a class="nav-link" '.$c.'  href="'. $value['alias'].'">' . $value['names'] . '</a>';
-            echo "<div></div>";
-            if ($value['cild']) :
-                echo '<ul>';
-                $this->child($value['cild'], $value['alias']);
-                echo '</ul>';
-                echo '</li>';
-            endif;
+
+            if($value['alias'] == '/'){
+                $a = $value['alias'];
+            }else{
+                $a = '/'.$value['alias'];
+            }
+           
+                echo '<li class="nav-item top"><a class="nav-link" ' . $c . '  href="' . $a . '">' . $value['names'] . '</a>';
+                if ($value['cild']) :
+                    echo '<ul class = "menu_pod">';
+                    $this->child($value['cild'], $value['alias']);
+                    echo '</ul>';
+                    echo '</li>';
+                endif;
+            
         }
     }
-
-
-
 }
