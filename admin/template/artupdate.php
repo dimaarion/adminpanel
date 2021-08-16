@@ -1,8 +1,21 @@
-<?php $controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Статьи', 'редактировать статью'); ?>
+<?php $controller->includer(
+    true,
+    true,
+    './admin/template/headtitle.php',
+    $controller,
+    'Статьи',
+    'редактировать статью',
+    ['names'=>$x['art_names']]
+);
+?>
 
-<form id="menunain" action="/adminpanel/articles/updateart/<?php echo $x['art_id']; ?>" method="post">
+<form
+id="menunain"
+action="/adminpanel/articles/updateart/<?php echo $x['art_id']; ?>"
+method="post">
 
-    <div class="mt-4 row">
+    <div
+    class="mt-4 row">
         <?php
         $controller->inputs(
             [
@@ -31,8 +44,10 @@
         );
         ?>
     </div>
-    <div class="row">
-        <div class="col">
+    <div
+    class="row">
+        <div
+        class="col">
             <?php
             $controller->inputs(
                 [
@@ -66,6 +81,7 @@
                     'value' => $x['art_keyword']
                 ]
             );
+            $controller->includer(true, true, './admin/template/select.php', $controller,'','');
             $controller->inputsTextarera(
                 [
                     'type' => 'text',
@@ -75,7 +91,14 @@
                     'value' => $x['art_description']
                 ]
             );
-            $controller->includer(true, true, './admin/template/redactor.php', $controller, html_entity_decode($x['art_subcontent'], ENT_HTML5), html_entity_decode($x['art_content'], ENT_HTML5));
+            $controller->includer(
+                true,
+                true,
+                './admin/template/redactor.php',
+                $controller,
+                html_entity_decode($x['art_subcontent'], ENT_HTML5),
+                html_entity_decode($x['art_content'], ENT_HTML5)
+            );
             ?>
         </div>
     </div>

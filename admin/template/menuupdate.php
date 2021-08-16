@@ -1,13 +1,21 @@
 <?php
-$menu_update_parent = $arr->queryRow('menu_id', $row['parent_id']);
-$controller->includer(true, true, './admin/template/headtitle.php', $controller, 'Меню', 'редактировать пункт меню');
+$menu_update_parent = $arr->queryRow(
+    'menu_id',
+    $row['parent_id']
+);
+$controller->includer(
+    true,
+    true,
+    './admin/template/headtitle.php',
+    $controller,
+    'Меню',
+    'редактировать пункт меню',
+    ['names' => $row['names']]
+);
 ?>
-
 <form id="menunain" action="/adminpanel/menu/updatemenu/<?php echo $id; ?>" method="post">
-
     <div class="mt-4 row">
         <?php
-
         $controller->inputs(
             [
                 'type' => 'submit',
@@ -74,31 +82,54 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
         <div class="col">
             <div class="col mt-2">
                 <label for="parent_id">
-                    <h5>Категории</h5>
+                    <h5>
+                        Категории
+                    </h5>
                 </label>
                 <select class="custom-select" name="parent_id" id="parent_id">
-                    <option value="<?php if ($menu_update_parent['names']) {
+                    <option value="<?php
+                                    if ($menu_update_parent['names']) {
                                         echo $menu_update_parent['menu_id'];
                                     } else {
                                         echo '0';
-                                    }; ?>" selected> <?php if ($menu_update_parent['menu_id']) {
-                                                            echo $menu_update_parent['names'];
-                                                        } else {
-                                                            echo 'Нет';
-                                                        }; ?></option>
-                    <?php if ($menu_update_parent['menu_id']) : ?>
-                        <option value="0">Нет</option>
-                    <?php endif; ?>
-                    <?php foreach ($id2 as $key => $value) : ?>
-                        <option value="<?php echo $value['menu_id']; ?>"><?php echo $value['names']; ?></option>
+                                    };
+                                    ?>" selected>
+                        <?php
+                        if ($menu_update_parent['menu_id']) {
+                            echo $menu_update_parent['names'];
+                        } else {
+                            echo 'Нет';
+                        };
+                        ?></option>
+                    <?php
+                    if ($menu_update_parent['menu_id']) :
+                    ?>
+                        <option value="0">
+                            Нет
+                        </option>
+                    <?php
+                    endif;
+                    ?>
+                    <?php
+                    foreach ($id2 as $key => $value) :
+                    ?>
+                        <option value="<?php echo $value['menu_id']; ?>">
+                            <?php
+                            echo $value['names'];
+                            ?>
+                        </option>
 
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach;
+                    ?>
                 </select>
             </div>
-            <div class="col">
+            <div class="col" >
                 <div class="row">
                     <div class="col">
-                        <h5 class="h5  mt-4">Статьи</h5>
+                        <h5 class="h5  mt-4">
+                            Статьи
+                        </h5>
                     </div>
                     <div class="col">
                         <?php $controller->inputs(
@@ -111,7 +142,7 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
                         ); ?>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col" id="menuArt">
                     <?php
                     array_map(function ($params) {
                         $c = new Controller();
@@ -123,7 +154,7 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
                                 'name' => 'menu_articles',
                                 'id' => 'update_menu_art' . $params['art_id'],
                                 'inputclass' => 'col-1',
-                                'divclass' => 'row'
+                                'divclass' => 'row update_menu_art'
                             ]
                         );
                     }, $x);
@@ -134,7 +165,9 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h5 class="h5 mt-4">Привязать статью</h5>
+                        <h5 class="h5 mt-4">
+                            Привязать статью
+                        </h5>
                     </div>
                     <div class="col">
                         <?php
@@ -157,9 +190,7 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
                         ?>
                     </div>
                 </div>
-
-                <div class="col new_menu_art_bl">
-
+                <div class="col new_menu_art_bl" id="privArt">
                     <?php
                     array_map(function ($params) {
                         $c = new Controller();
@@ -175,7 +206,6 @@ $controller->includer(true, true, './admin/template/headtitle.php', $controller,
                             ]
                         );
                     }, $x2);
-
                     ?>
                 </div>
             </div>

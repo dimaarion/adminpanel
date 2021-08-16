@@ -77,6 +77,8 @@
          f()
      }([])
  </script>
+
+
  <?php
     foreach ($controller->dirFileName($controller->dirExt('./static/js')) as $key => $value) : ?>
      <script src="/adminpanel/static/js/<?php echo $value ?>"></script>

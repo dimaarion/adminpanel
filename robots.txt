@@ -1,0 +1,28 @@
+User-agent: Yandex
+Allow: /
+Disallow: /template/
+Disallow: /admin/
+Disallow: /img/
+Disallow: /image/
+Disallow: /js/
+Disallow: /index.php
+Disallow: /index.php?
+Disallow: /?
+Disallow: /file/
+Disallow: /%
+
+
+User-agent: *
+Allow: /
+Sitemap: https://sandaniprim.mdlocal/sitemap/sitemap.xml
+Disallow: /template/
+Disallow: /admin/
+Disallow: /img/
+Disallow: /image/
+Disallow: /js/
+Disallow: /index.php
+Disallow: /index.php?
+Disallow: /?
+Disallow: /file/
+Disallow: /%
+Host:https://sandaniprim.mdlocal/

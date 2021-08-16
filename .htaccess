@@ -1,6 +1,6 @@
 #AuthType Basic
 #AuthName "Password Protected Area"
-#AuthUserFile 	/home/users/d/dimaarion/domains/sandani.ru/adminpanel/.htpasswd
+#AuthUserFile 	/home/users/d/dimaarion/domains/fk-i-s.ru/adminpanel/.htpasswd
 #Require valid-user
 
 RewriteEngine On

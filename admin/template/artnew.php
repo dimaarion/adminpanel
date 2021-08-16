@@ -56,6 +56,7 @@
                             'name' => 'keywords'
                         ]
                     );
+                    $controller->includer(true, true, './admin/template/select.php', $controller,'','');
                     $controller->inputsTextarera(
                         [
                             'type' => 'text',

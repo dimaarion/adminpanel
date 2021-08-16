@@ -4,7 +4,7 @@ class Database{
     protected $datab;
 
     // connect to db
-    public function __construct($username = "root", $password = "", $host = "localhost", $dbname = "fk", $options = []){
+    public function __construct($username = "root", $password = "", $host = "localhost", $dbname = "sandaniprim", $options = []){
         $this->isConn = TRUE;
         try {
             $this->datab = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password, $options);

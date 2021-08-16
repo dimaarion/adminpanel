@@ -1,88 +1,10 @@
 .images{
-  overflow: hidden;
-  height: 210px;
-  margin-bottom: 10px
-
-}
-.srcimg{
-	position: absolute;
- 	z-index: 15000;
- 	background-color: #ffffff;
- 	height: 55px;
- 	width: 100%;
- 	margin-top: 126px;
- 	cursor: auto;
-  padding-left: 15px;
-  padding-right: 20px;
-
-}
-#svgright, #svgleft{
-  color: #ffffff;
-  font-size: 25pt;
-  background-color:#444444;
-  border-radius: 25px;
-  height: 50px;
-  width: 50px;
-  padding: 5px;
-  transition: 0.2s;
-  cursor: pointer;
-}
-#svgright:hover{
-  border-radius: 30px;
-  height: 55px;
-  width: 55px;
-
-}
-#svgleft:hover{
-  border-radius: 30px;
-  height: 55px;
-  width: 55px;
- }
- #svgcloseimg:hover{
-  border-radius: 30px;
-  height: 55px;
-  width: 55px;
- }
-#svgcloseimg{
-  color: #ffffff;
-  font-size: 25pt;
-  background-color:#444444;
-  border-radius: 25px;
-  height: 50px;
-  width: 50px;
-  padding: 5px;
-  transition: 0.2s;
-  cursor: pointer;
-  position: absolute;
-
-}
-.imgrigstkr{
-  float: left;
-}
-.closeimg{
-  float: right;
-  margin-right: 50px;
-}
-.footerBarIcon{
-  width: 100%;
-  cursor: pointer;
-
-}
-#footbarimg{
-  z-index: 8000;
-  margin-top: 100px;
-}
-#footbarimg div{
-  overflow: hidden;
-  height: 50px;
+  padding-top: 40px;
   margin-bottom: 10px;
+}
 
-}
-.imgFootBl{
-  border:solid 3px green;
-}
 .deleteF svg{
-  display: none;
+
   color: #333333;
   font-size: 25pt;
   background-color:#cccccc;
@@ -99,18 +21,43 @@ box-shadow:0px 1px 5px 3px rgba(0,0,0,0.60);
 -moz-box-shadow:0px 1px 5px 3px rgba(0,0,0,0.60);
 }
 .deleteF{
-  height: 20px;
+  display: none;
+  height: 0px;
   margin-bottom: 10px;
+  position: absolute;
+  z-index: 8000;
+  margin-left: -50px;
+  margin-top:-25px;
+  width: 0px;
+  border: none;
+  background-color: #ffffffff;
 }
-.images:hover .deleteF svg{
-display: inline-block;
+.images:hover .deleteF{
+display: block;
 }
 
 
 .deleteFilesDiv{
   display: none;
 }
-
-
-
+.titleImg{
+  position: absolute;
+  background-color: #333333;
+  color: #ffffff;
+  padding: 5px;
+  border-radius:5px;
+  margin-left: 125px;
+  z-index: 8000;
+  display: none;
+}
+.images:hover .titleImg{
+display: block;
+}
+.descriptImg{
+  font-size: 12pt;
+}
+.copyUrl{
+  border: none;
+  margin: 5px;
+}
 

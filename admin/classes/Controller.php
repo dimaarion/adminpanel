@@ -9,6 +9,9 @@ class Controller
     public $alias;
     public $id;
     public $limit = 4;
+    public $nmenu;
+    public $page;
+    public $countPag = 2;
 
     public function inputs($inputs)
     {
@@ -111,6 +114,24 @@ class Controller
         }
     }
 
+    public function get_json($f)
+    {
+        if (is_file($f)) {
+            return file_get_contents($f);
+        } else {
+            return $this->errFiles;
+        }
+    }
+
+    public function set_json($f, $content)
+    {
+        if (is_file($f)) {
+            return  file_put_contents($f, json_encode($content));
+        } else {
+            return $this->errFiles;
+        }
+    }
+
     public function dirFileName($nameDir)
     {
         $r =  array_map(function ($x) {
@@ -153,9 +174,10 @@ class Controller
             art_description VARCHAR(255) NOT NULL,
             art_subcontent text(255) NOT NULL,
             art_content text(255) NOT NULL,
+            art_lang VARCHAR(11) NOT NULL,
+           
             PRIMARY KEY (`art_id`))"
         );
-        
     }
 
     public function insertTable($sansize)
@@ -245,6 +267,7 @@ class Controller
                     'art_description',
                     'art_subcontent',
                     'art_content',
+                    'art_lang',
                     'art_id'
                 ],
                 [
@@ -254,14 +277,15 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     htmlentities($_REQUEST['subcontent'], ENT_HTML5),
-                    htmlentities($_REQUEST['content'], ENT_HTML5)
+                    htmlentities($_REQUEST['content'], ENT_HTML5),
+                    $sansize->getrequest('lang')
 
                 ],
                 $sansize->getrequest('update_art_id')
             );
 
             $this->err = $din->err;
-            header('location:/adminpanel/articles/updateart/' . $sansize->getrequest('update_art_id'));
+            header('location:/adminpanel/articles/updateart/' . $sansize->getrequest('update_art_id').'/'.$sansize->getrequest('lang'));
         }
         //Добавление статьи
         if (@$_REQUEST['new_art_save']) {
@@ -274,7 +298,9 @@ class Controller
                     'art_keyword',
                     'art_description',
                     'art_subcontent',
-                    'art_content'
+                    'art_content',
+                    'art_lang',
+                    
                 ],
                 [
                     $sansize->getrequest('names'),
@@ -283,14 +309,15 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     htmlentities($_REQUEST['subcontent'], ENT_HTML5),
-                    htmlentities($_REQUEST['content'], ENT_HTML5)
+                    htmlentities($_REQUEST['content'], ENT_HTML5),
+                    $sansize->getrequest('lang'),
+                    
 
                 ]
             );
 
             $this->err = $din->err;
         }
-      
     }
 
     public function deleteTable($sansize)
@@ -364,5 +391,136 @@ class Controller
     public function pagination($a, $b)
     {
         return ($a / $b + ($a % $b > 0 ? 1 : 0));
+    }
+
+    public function createFiles( $location, $content,$dir = '')
+    {
+        if ($dir == '') {
+            if (file_exists('./'.$location)) {
+                $str = file_get_contents('./' . $location);
+                if (strcmp($str, $content) != 0) {
+                    return file_put_contents('./' . $location, $content);
+                }
+            } else {
+                return file_put_contents('./' . $location, $content);
+            }
+        }else{
+            if(is_dir('./'.$dir)){
+                if (file_exists('./'.$dir.'/'.$location)) {
+
+                    $str = file_get_contents('./' . $dir . '/' . $location);
+                    if (strcmp($str, $content) != 0) {
+                        return file_put_contents('./' . $dir . '/' . $location, $content);
+                    }
+                } else {
+                    return file_put_contents('./' . $dir . '/' . $location, $content);
+                }
+            }else{
+                mkdir('./'.$dir);
+            }
+        }
+    }
+
+    public function paginationPage($controller, $a, $b)
+    {
+
+        if ($a < 1) {
+            if ($controller->alias != 'page') {
+                return $controller->alias;
+            }
+        } else {
+            if (!$controller->alias) {
+                return 'page' . $controller->alias . '/' . $b;
+            } else {
+                return $controller->alias . '/' . $b;
+            }
+        }
+    }
+
+
+    public function paginationPlus($controller, $a, $b)
+    {
+
+        if (!$controller->alias) {
+            return '/page/2';
+        } else {
+            if ($controller->alias == 'page') {
+                if ($controller->id + $a > $b) {
+                    return '/';
+                } else {
+                    return $controller->id + $a;
+                }
+            } else {
+                if (!$controller->id) {
+                    return '/' . $controller->alias . '/2';
+                } else {
+                    if ($controller->id + $a > $b) {
+                        return '/' . $controller->alias;
+                    } else {
+                        return  $controller->id + $a;
+                    }
+                }
+            }
+        }
+    }
+
+    public function paginationCount($id,$c)
+    {
+        if ($id == '') {
+            return 1;
+        }else{
+            if($id > $c){
+                return 1;
+            }else{
+                return $id;
+            }
+
+        }
+    }
+    public function createRobotText()
+    {
+        return
+            'User-agent: Yandex
+Allow: /
+Disallow: /template/
+Disallow: /admin/
+Disallow: /img/
+Disallow: /image/
+Disallow: /js/
+Disallow: /index.php
+Disallow: /index.php?
+Disallow: /?
+Disallow: /file/
+Disallow: /%
+
+
+User-agent: *
+Allow: /
+Sitemap: https://' . $_SERVER['HTTP_HOST'] . '/sitemap/sitemap.xml
+Disallow: /template/
+Disallow: /admin/
+Disallow: /img/
+Disallow: /image/
+Disallow: /js/
+Disallow: /index.php
+Disallow: /index.php?
+Disallow: /?
+Disallow: /file/
+Disallow: /%
+Host:https://' . $_SERVER['HTTP_HOST'] . '/';
+    }
+
+    public function createSitemap($arr = [])
+    {
+        
+        $d = [];
+        foreach ($arr as $key => $value) {
+            $d[$key] =  "<url><loc>https://" . $_SERVER['HTTP_HOST'] . "/" . $value['art_alias'] . "</loc></url> \n";
+        }
+        return
+            "<?xml version='1.0' encoding='UTF-8'?>
+        <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'> \n"
+            . implode(' ', $d)
+            . '</urlset>';
     }
 }

@@ -12,7 +12,9 @@ $id2 = $sansize->getrequest('id2');
 $id3 = $sansize->getrequest('id3');
 $delid = $sansize->getrequest('delid');
 $nmenu = $sansize->getrequest('nmenu');
-
+$controller->id = $sansize->getrequest('id');
+$controller->nmenu = $sansize->getrequest('nmenu');
+$controller->page = $sansize->getrequest('page');
 //меню
 $new_menu_select = new DSelect('menu');
 $update_menu_select = new DSelect('menu');
@@ -43,6 +45,10 @@ $controller->deleteTable($sansize);
 
 $files_upload = new DUpload('files', '/img/upload/');
 $images = $files_upload->getImg('/img/upload');
+//Удаление файла
+
+$filesClass = new Files();
+$filesClass->deleteFiles();
 //----------------------------------------------------------------------------------------------------------------------------
 
 $controller->redirects($id, 'new', '/adminpanel/menu/menu');
@@ -82,7 +88,10 @@ $controller->redirects($nmenu, 'load', '/adminpanel/files');
 
         ?>
     </div>
-    <?php $controller->includer(true, true, './admin/template/footer.php', $controller); ?>
+    <?php
+     $controller->includer(true, true, './admin/template/footer.php', $controller); 
+    ?>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 

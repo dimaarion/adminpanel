@@ -36,7 +36,7 @@ class Menu
     public function child($x, $u)
     {
         foreach ($x as $key => $value) {
-            echo  '<li class="pod nav"><a href="' . $value['alias'] . '" class="nav-link pb-0 pl-0 ml-0">' . $value['names'] . '</a>';
+            echo  '<li class="pod nav"><a href="/' . $value['alias'] . '" class="nav-link pb-0 pl-0 ml-0">' . $value['names'] . '</a>';
             if ($value['cild']) :
                 echo '<ul>';
                 $this->child($value['cild'], $u);
