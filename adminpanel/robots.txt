@@ -14,7 +14,7 @@ Disallow: /%
 
 User-agent: *
 Allow: /
-Sitemap: https://adminpanel/sitemap/sitemap.xml
+Sitemap: https://sandaniprim.mdlocal/sitemap/sitemap.xml
 Disallow: /template/
 Disallow: /admin/
 Disallow: /img/
@@ -25,4 +25,4 @@ Disallow: /index.php?
 Disallow: /?
 Disallow: /file/
 Disallow: /%
-Host:https://adminpanel/
+Host:https://sandaniprim.mdlocal/

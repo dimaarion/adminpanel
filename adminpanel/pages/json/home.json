@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "name":"Этапы работы",
+        "image":"/img/okno2.jpg",
+        "lang":"ru"
+    },
+    {
+        "id":2,
+        "name":"md",
+        "image":"/img/okno2.jpg",
+        "lang":"md"
+    }
+]
