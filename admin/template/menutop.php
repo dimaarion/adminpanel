@@ -21,6 +21,11 @@
             "names" => "Файлы",
             "alias" => "adminpanel/files",
             "parent_id" => 0
+        ], [
+            "menu_id" => 5,
+            "names" => "Настройки",
+            "alias" => "adminpanel/settings",
+            "parent_id" => 0
         ]
     ];
     $menu_class = new Menu();

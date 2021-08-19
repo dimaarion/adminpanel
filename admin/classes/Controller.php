@@ -154,6 +154,7 @@ class Controller
             keywords VARCHAR(255) NOT NULL,
             descriptions VARCHAR(255) NOT NULL,
             parent_id int(11) NOT NULL,
+            lang VARCHAR(11) NOT NULL,
             PRIMARY KEY (`menu_id`))"
         );
         $tableMenu->createTable(
@@ -175,13 +176,36 @@ class Controller
             art_subcontent text(255) NOT NULL,
             art_content text(255) NOT NULL,
             art_lang VARCHAR(11) NOT NULL,
-           
             PRIMARY KEY (`art_id`))"
+        );
+
+        $tableMenu->createTable(
+            "CREATE TABLE  tel (
+            tel_id INT(6) AUTO_INCREMENT NOT NULL,
+            tel_content VARCHAR(255) NOT NULL,
+            PRIMARY KEY (`tel_id`))"
         );
     }
 
     public function insertTable($sansize)
     {
+        //Добавление номера тел
+        if (@$_REQUEST['telsavebutton']) {
+            $din =  new DUpdate(
+                'tel',
+                [
+                    'tel_content',
+                    'tel_id'
+                ],
+                [
+                    $sansize->getrequest('telsave')
+                ],
+                $sansize->getrequest('tel_id')
+            );
+
+            $this->err = $din->err;
+            header('location:/adminpanel/settings');
+        }
         //Добавление пунктов меню
         if (@$_REQUEST['new_menu_save']) {
             $din =  new DInsert(
@@ -192,7 +216,8 @@ class Controller
                     'names',
                     'keywords',
                     'descriptions',
-                    'parent_id'
+                    'parent_id',
+                    'lang'
                 ],
                 [
                     $sansize->getrequest('alias'),
@@ -200,11 +225,13 @@ class Controller
                     $sansize->getrequest('names'),
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
-                    $sansize->getrequest('parent_id')
+                    $sansize->getrequest('parent_id'),
+                    $sansize->getrequest('lang')
                 ]
             );
 
             $this->err = $din->err;
+            
         }
         // Редактирование меню
         if (@$_REQUEST['update_menu_save']) {
@@ -217,6 +244,7 @@ class Controller
                     'keywords',
                     'descriptions',
                     'parent_id',
+                    'lang',
                     'menu_id'
 
                 ],
@@ -226,13 +254,14 @@ class Controller
                     $sansize->getrequest('names'),
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
-                    $sansize->getrequest('parent_id')
+                    $sansize->getrequest('parent_id'),
+                    $sansize->getrequest('lang')
                 ],
                 $sansize->getrequest('menu')
             );
 
             $this->err = $din->err;
-            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
         }
         // добавление статьи к меню
         if (@$_REQUEST['update_menu_art_save']) {
@@ -250,7 +279,7 @@ class Controller
 
                     ]
                 );
-                header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
+                header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
             } catch (\Throwable $th) {
                 $this->err = 'Ошибка добавления статьи';
             }
@@ -330,7 +359,7 @@ class Controller
         if ($_REQUEST['update_menu_art_delete']) {
             $d = new DDelete('art_menu', 'articles', [$_REQUEST['menu_articles']]);
             $d->delete();
-            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
         }
         if ($_REQUEST['art_delete']) {
             $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);

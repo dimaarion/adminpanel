@@ -78,7 +78,11 @@ $controller->includer(
                 ]
             );
             ?>
+            <div class="col mt-4 p-0">
+			<?php  $controller->includer(true, true, './admin/template/select.php', $controller,'',''); ?>
+			</div>
         </div>
+
         <div class="col">
             <div class="col mt-2">
                 <label for="parent_id">

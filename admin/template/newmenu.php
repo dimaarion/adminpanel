@@ -73,8 +73,12 @@
 
 				<?php endforeach; ?>
 			</select>
+			<div class="col mt-4 p-0">
+			<?php  $controller->includer(true, true, './admin/template/select.php', $controller,'',''); ?>
+			</div>
 		</div>
-
+		
+       
 	</div>
 
 </form>
