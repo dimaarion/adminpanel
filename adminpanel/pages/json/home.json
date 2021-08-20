@@ -1,14 +1,38 @@
 [
     {
-        "id":1,
-        "name":"Этапы работы",
-        "image":"/img/okno2.jpg",
-        "lang":"ru"
+        "id": 1,
+        "winInMd": "Пластиковые окна Salamander в молдове",
+        "winInMdContent": "Пластиковые окна Salamander в молдове",
+        "name": "Этапы работы",
+        "image": "/img/okno2.jpg",
+        "greenEvolution": "Модульная система greenEvolution",
+        "greenEvolutionContent": "Серия greenEvolution – новый шаг в разработке оконных конструкций. Долговечное пластиковое окно, которое одновременно хорошо смотрится и с фасада и в комнате? Многообразие декора и поверхностей из натуральных материалов позволяет реализовать все возможные стили: от классического консервативного до вызывающе современного. Шесть совместимых друг с другом производственных линеек серии профилей открывают безграничный простор для фантазии даже при нестандартной форме окна. Количество створок, покрытие, круглый или угловой рамочный профиль – все ваши требования легко воплощаются в жизнь. У нас всегда найдется подходящая профильная система для новостроек или реконструкции старых зданий.",
+        "greenEvolutionContentBox": [
+            {
+                "name": "greenEvolution free",
+                "descript":"Дизайнерское окно в стандартной конструкции характеризуется рамой минимальной видимой ширины для максимального проникновения света. Эта особенность делает его идеальным для обустройства окон в исторических зданиях. Благодаря сочетанию с натуральными материалами уменьшенная конструкция обеспечивает широкий спектр возможностей оформления.",
+                "specific":" 5-камерный профиль ~ упорное уплотнение и среднее уплотнение ~ монтажная глубина: 76 мм– Uw до = 0,75 Вт/(м²К) ~ остекление: до 48 мм, звукоизоляция: до 47 дБ ~ сопротивление взлому: до RC 2",
+                "image":"/img/greenEvolutionFree.jpg"
+            }
+        ],
+        "lang": "ru"
     },
     {
-        "id":2,
-        "name":"Etape de lucru",
-        "image":"/img/okno2.jpg",
-        "lang":"md"
+        "id": 2,
+        "winInMd": "Ferestre din plastic Salamander în Moldova",
+        "winInMdContent": "Ferestre din plastic Salamander în Moldova",
+        "name": "Etape de lucru",
+        "image": "/img/okno2.jpg",
+        "greenEvolution": "Sistemul modular greenEvolution",
+        "greenEvolutionContent": "Prin intermediul greenEvolution, facem următorul pas în construcţia de ferestre. O fereastră durabilă din material plastic, care să se potrivească atât faţadelor, cât şi spaţiilor interioare? Cu ajutorul varietăţii de decoruri şi suprafeţe din realmaterial, se pot realiza toate stilurile imaginabile: De la stilul clasic purist, până la cel foarte modern. Prin intermediul celor şase linii de producţie compatibile pentru seria de profile, fantezia nu mai cunoaşte limite, nici în cazul formelor individuale de ferestre. Ideile dumneavoastră se transformă uşor în realitate, indiferent de numărul de aripi, de sistemele de şprosuri sau dacă profilul de cadru este rotund sau unghiular. Noi vă oferim sistemul de profile adecvat, atât în cazul proiectelor noi de construcţie, cât şi în cazul restaurărilor de clădiri vechi.",
+        "greenEvolutionContentBox": [
+            {
+                "name": "greenEvolution free",
+                "descript":"Fereastra cu design standard se evidenţiază prin lăţimi exterioare minime pentru un acces maxim al luminii. Astfel, aceasta este foarte potrivită pentru ferestrele din clădirile istorice. Datorită combinaţiei cu realmaterial, design-ul redus asigură o varietate de posibilităţi optice.",
+                "specific":" Profil cu 5-camere ~ Etanşare cu opritor şi etanşare centrală ~ Adâncime constructivă: 76 mm ~ până la Uw = 0,75 W/(m²K) ~ Vitraj: până la 48 mm ~ Protecţie fonică: până la 47 dB ~ Dispozitiv anti-efracţie: până la RC 2",
+                "image":"/img/greenEvolutionFree.jpg"
+            }
+        ],
+        "lang": "md"
     }
 ]
