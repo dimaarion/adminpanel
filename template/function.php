@@ -1,16 +1,9 @@
 <?php
-spl_autoload_register(function ($className) {
-    require './adminpanel/admin/classes/' . $className . '.php';
-});
-$controller  = new Controller();
 $sansize = new Sansize();
 $menuClass = new DSelect('menu');
-$menuClassRows = new DSelect('menu');
 $articleClassRow = new DSelect('article');
 $articleClassRows = new DSelect('article');
 $menu_class = new Menu();
-$art_menu_select = new DSelect('menu,article,art_menu');
-$art_menu_select_count = new DSelect('menu,article,art_menu');
 //Переменные
 $controller->limit = 4;
 $controller->alias = $sansize->getrequest('alias');
@@ -18,13 +11,7 @@ $controller->id = $sansize->getrequest('id');
 $menu_alias =  $menuClass->queryRow('alias', $controller->indexPage($controller->alias, ''));
 $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($controller->alias, ''));
 $artRows = $articleClassRows->queryRows();
-$menu = $menuClassRows->queryRows();
-$menu_class->props = $menu;
-$countPageMin = ($controller->twocorrectthird($controller->id, '', 1, $controller->id) * $controller->limit) - $controller->limit;
-$art_menu = $art_menu_select->queryRowWhere('menu.menu_id = art_menu.menu AND art_id = art_menu.articles AND menu.menu_id ="' 
-. $menu_alias['menu_id']. '" LIMIT '. $countPageMin.','. $controller->limit.'');
-$art_menu_count = $art_menu_select_count->queryRowWhere('menu.menu_id = art_menu.menu AND art_id = art_menu.articles AND menu.menu_id ="'
-. $menu_alias['menu_id'] . '"');
+
 //переадресация на главную если статьи не существует
 $controller->redirects($controller->ifElseContent($controller->ifElseContent($artRow['art_alias'],$menu_alias['alias']),'nopage'), 'nopage','/');
 //переадресация с http на https
