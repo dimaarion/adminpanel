@@ -1,7 +1,5 @@
 <?php
 require("header.php");
-require("../admin/classes/Database.php");
-require("../admin/classes/DSelect.php");
 $select = new DSelect('article');
 $article = $select->queryRows();
 $rez = [];

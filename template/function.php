@@ -19,45 +19,6 @@ $controller->redirects($_SERVER['HTTP_X_FORWARDED_PROTOCOL'],'http','https://'. 
 //
 $controller->redirects('', 'http', 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
-// Отправка письма
-
-function intFilter($val)
-{
-    if (isset($val)) {
-        if (is_int($val)) {
-            return $val;
-        } else {
-            if (is_numeric($val)) {
-                return intval($val);
-            } else {
-                return 0;
-            }
-        }
-    } else {
-        return 0;
-    }
-}
-$sansize = new Sansize();
-$name = $sansize->getrequest('username');
-$tel = $sansize->getrequest('usertel');
-$mail = $sansize->getrequestEmail('usermail');
-$tema = $sansize->getrequest('theme');
-$content = $sansize->getrequest('message');
-$nameh = intFilter($sansize->getrequestInt('namehidden'));
-$telh = intFilter($sansize->getrequestInt('telhidden'));
-$mailh = intFilter($sansize->getrequestInt('mailhidden'));
-$temah = intFilter($sansize->getrequestInt('themehidden'));
-$contenth = intFilter($sansize->getrequestInt('messagehidden'));
-$countform = $nameh + $telh  + $mailh + $temah + $contenth;
-$countformto = strlen($name) + strlen($tel) + strlen($mail) + strlen($tema) + strlen($content);
-if ($countform != 0 && $countformto != 0) {
-    if ($nameh != 0 && $telh != 0 && $mailh != 0 && $temah != 0 && $contenth != 0) {
-        new DMail('19197908an@mail.ru', 'sandani<noreply@sandani.ru>', $tema, ['name' => 'Ф. И. О: ' . $name, 'Телефон: ' . 'tel' => $tel, 'mail' => 'Почта: ' . $mail, 'message' => $content]);
-        header('location:/message.html?id=Сообщение отправлено!');
-    } else {
-        header('location:/message.html?id=Ошибка! Сообщение не отправлено');
-    }
-}
 //Создание файлов
 $controller->createFiles('robots.txt',$controller->createRobotText());
 $controller->createFiles('sitemap.xml', $controller->createSitemap($artRows),'sitemap');

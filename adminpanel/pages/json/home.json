@@ -15,6 +15,18 @@
                 "image":"/img/greenEvolutionFree.jpg"
             }
         ],
+        "message":[{
+            "name":"Напишите нам сообщение",
+            "descript":"Если у Вас есть вопросы или Вы желаете оставить заявку на замер окон, заполните форму, приведенную ниже.",
+            "warning":"* Все поля ОБЯЗАТЕЛЬНЫ для заполнения!",
+            "familie":"Ф. И. О.",
+            "tel":"Номер телефона",
+            "maill":"Электронная почта",
+            "theme":"Тема",
+            "themeHold":"Тема сообщения",
+            "txt":"Сообщение",
+            "button":"Отправить сообщение"
+        }],
         "lang": "ru"
     },
     {
@@ -33,6 +45,18 @@
                 "image":"/img/greenEvolutionFree.jpg"
             }
         ],
+        "message":[{
+            "name":"Scrie-ne un mesaj",
+            "descript":"Dacă aveți întrebări sau doriți să lăsați o cerere de măsurare a ferestrei, completați formularul de mai jos.",
+            "warning":"*Toate campurile sunt necesare!",
+            "familie":"Familie",
+            "tel":"Număr de telefon",
+            "maill":"E-mail",
+            "theme":"Temă",
+            "themeHold":"Subiectul mesajului",
+            "txt":"Mesaj",
+            "button":"Trimite un mesaj"
+        }],
         "lang": "md"
     }
 ]

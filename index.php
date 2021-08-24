@@ -10,7 +10,7 @@ $controller->includer(true, true, 'template/function.php', $controller);
 <head>
 <?php 
 
-$controller->includer(true, true, 'template/header.php', $controller,); 
+$controller->includer(true, true, 'template/header.php', $controller); 
 ?>
 </head>
 

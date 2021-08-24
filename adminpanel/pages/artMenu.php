@@ -1,9 +1,6 @@
 <?php
 require("header.php");
-require("../admin/classes/Sansize.php");
-require("../admin/classes/Database.php");
-require("../admin/classes/DSelect.php");
-require("../admin/classes/Controller.php");
+
 $sansize = new Sansize();
 $controller  = new Controller();
 $art_menu_select = new DSelect('menu,article,art_menu');
