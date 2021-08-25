@@ -27,6 +27,7 @@ function validMaill($val)
 }
 
 $sansize = new Sansize();
+
 $name = $sansize->getrequest('username');
 $tel = $sansize->getrequest('usertel');
 $mail = $sansize->getrequestEmail('usermail');
@@ -41,7 +42,8 @@ $contenth = intFilter($sansize->getrequestInt('messagehidden'));
 $countform = $nameh + $telh  + $mailh + $temah + $contenth;
 $countformto = strlen($name) + strlen($tel) + strlen($mail) + strlen($tema) + strlen($content);
 
-   
+$x = intFilter($sansize->getrequest('mx'));
+$y = intFilter($sansize->getrequest('my'));
 if($lang == "md"){
     $connect = "Mesaj trimis!"; 
     $errorMesage = "Eroare! Mesajul nu a fost trimis. Nu toate câmpurile formularului sunt completate.";  
@@ -55,18 +57,17 @@ if($lang == "md"){
 
 
 if ($countform != 0 && $countformto != 0) {
-    if ($nameh != 0 && $telh != 0 && $mailh != 0 && $temah != 0 && $contenth != 0) {
+    if ($nameh != 0 && $telh != 0 && $mailh != 0 && $temah != 0 && $contenth != 0 && $x > 0 && $y > 0) {
         if(validMaill($mail)){
-            new DMail('19197908an@mail.ru', 'sandani<noreply@sandani.ru>', $tema, ['name' => 'Ф. И. О: ' . $name, 'Телефон: ' . 'tel' => $tel, 'mail' => 'Почта: ' . $mail, 'message' => $content]);
-       echo json_encode($connect.$lang);
+            new DMail('19197908an@mail.ru', 'sandaniprim<noreply@sandaniprim.md>', $tema, ['name' => 'Ф. И. О: ' . $name, 'Телефон: ' . 'tel' => $tel, 'mail' => 'Почта: ' . $mail, 'message' => $content]);
+       echo json_encode([$connect,1]);
         // header('location:/message.html?id=Сообщение отправлено!');
         }else{
-            echo json_encode($errorMaill) ;
+            echo json_encode([$errorMaill,0]) ;
         }
         
     } else {
-       echo json_encode($errorMesage);
+       echo json_encode([$errorMesage,0]);
        // header('location:/message.html?id=Ошибка! Сообщение не отправлено');
     }
 }
-
