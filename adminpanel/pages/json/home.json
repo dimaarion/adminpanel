@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "winInMd": "Пластиковые окна Salamander в молдове",
-        "winInMdContent": "Пластиковые окна Salamander в молдове",
+        "winInMd": "Пластиковые окна Salamander в Молдове",
+        "winInMdContent": "Собственное производство фирмы расположено в Молдове и оснащено современным высокоэффективным оборудованием, что позволяет предлагать жителям Молдовы самые выгодные на рынке цены на всю гамму продукции от производителя.",
         "name": "Этапы работы",
         "image": "/img/okno2.jpg",
         "greenEvolution": "Модульная система greenEvolution",
@@ -11,8 +11,45 @@
             {
                 "name": "greenEvolution free",
                 "descript":"Дизайнерское окно в стандартной конструкции характеризуется рамой минимальной видимой ширины для максимального проникновения света. Эта особенность делает его идеальным для обустройства окон в исторических зданиях. Благодаря сочетанию с натуральными материалами уменьшенная конструкция обеспечивает широкий спектр возможностей оформления.",
-                "specific":" 5-камерный профиль ~ упорное уплотнение и среднее уплотнение ~ монтажная глубина: 76 мм– Uw до = 0,75 Вт/(м²К) ~ остекление: до 48 мм, звукоизоляция: до 47 дБ ~ сопротивление взлому: до RC 2",
+                "headSpecific":"Характеристики",
+                "specific":[
+                    {"content":"5-камерный профиль"},
+                    {"content":"упорное уплотнение и среднее уплотнение"},
+                    {"content":"монтажная глубина: 76 мм"},
+                    {"content":"Uw до = 0,75 Вт/(м²К)"},
+                    {"content":"остекление: до 48 мм"},
+                    {"content":"звукоизоляция: до 47 дБ"},
+                    {"content":"сопротивление взлому: до RC 2"}
+                ],
                 "image":"/img/greenEvolutionFree.jpg"
+            }, {
+                "name": "greenEvolution box",
+                "descript":"box характеризуется своей угловатой конструкцией. Угловатые формы и четкие линии создают современный и элегантный образ. Конструкция, в основе которой лежит алюминиевое окно, впечатляет рамой минимальной видимой ширины, креплением под стекло до 56 мм и максимальной звукоизоляцией.",
+                "headSpecific":"Характеристики",
+                "specific":[
+                    {"content":"7-камерный профиль"},
+                    {"content":"упорное уплотнение и среднее уплотнение"},
+                    {"content":"монтажная глубина: 76 мм"},
+                    {"content":"Uw = до 0,73 Вт/(м²К)"},
+                    {"content":"остекление: до 56 мм"},
+                    {"content":"звукоизоляция: до 48 дБ"},
+                    {"content":"сопротивление взлому: до RC 2"}
+                ],
+                "image":"/img/greenEvolutionbox.jpg"
+            }, {
+                "name": "greenEvolution box",
+                "descript":"box характеризуется своей угловатой конструкцией. Угловатые формы и четкие линии создают современный и элегантный образ. Конструкция, в основе которой лежит алюминиевое окно, впечатляет рамой минимальной видимой ширины, креплением под стекло до 56 мм и максимальной звукоизоляцией.",
+                "headSpecific":"Характеристики",
+                "specific":[
+                    {"content":"7-камерный профиль"},
+                    {"content":"упорное уплотнение и среднее уплотнение"},
+                    {"content":"монтажная глубина: 76 мм"},
+                    {"content":"Uw = до 0,73 Вт/(м²К)"},
+                    {"content":"остекление: до 56 мм"},
+                    {"content":"звукоизоляция: до 48 дБ"},
+                    {"content":"сопротивление взлому: до RC 2"}
+                ],
+                "image":"/img/greenEvolutionbox.jpg"
             }
         ],
         "message":[{
@@ -32,7 +69,7 @@
     {
         "id": 2,
         "winInMd": "Ferestre din plastic Salamander în Moldova",
-        "winInMdContent": "Ferestre din plastic Salamander în Moldova",
+        "winInMdContent": "Producția proprie a companiei este situată în Moldova și este dotată cu echipamente moderne de înaltă eficiență, ceea ce ne permite să oferim moldovenilor cele mai avantajoase prețuri de pe piață pentru întreaga gamă de produse de la producător.",
         "name": "Etape de lucru",
         "image": "/img/okno2.jpg",
         "greenEvolution": "Sistemul modular greenEvolution",
@@ -41,8 +78,31 @@
             {
                 "name": "greenEvolution free",
                 "descript":"Fereastra cu design standard se evidenţiază prin lăţimi exterioare minime pentru un acces maxim al luminii. Astfel, aceasta este foarte potrivită pentru ferestrele din clădirile istorice. Datorită combinaţiei cu realmaterial, design-ul redus asigură o varietate de posibilităţi optice.",
-                "specific":" Profil cu 5-camere ~ Etanşare cu opritor şi etanşare centrală ~ Adâncime constructivă: 76 mm ~ până la Uw = 0,75 W/(m²K) ~ Vitraj: până la 48 mm ~ Protecţie fonică: până la 47 dB ~ Dispozitiv anti-efracţie: până la RC 2",
+                "headSpecific":"Specificații",
+                "specific":[
+                    {"content":"profil cu 5-camere"},
+                    {"content":"etanşare cu opritor şi etanşare centrală"},
+                    {"content":"adâncime constructivă: 76 mm  "},
+                    {"content":"până la Uw = 0,75 W/(m²K)"},
+                    {"content":"Vitraj: până la 48 mm"},
+                    {"content":"Protecţie fonică: până la 47 dB"},
+                    {"content":"Dispozitiv anti-efracţie: până la RC 2"}
+                ],
                 "image":"/img/greenEvolutionFree.jpg"
+            }, {
+                "name": "greenEvolution box",
+                "descript":"box se evidenţiază prin design-ul său unghiular. Formele unghiulare şi ghidajul liniar clar asigură un aspect modern şi elegant. Astfel, design-ul cu poziţie întredeschisă a ferestrei din aluminiu cu lăţime exterioară minimă, sticlă până la 56 mm şi o protecţie fonică maximă.",
+                "headSpecific":"Specificații",
+                "specific":[
+                    {"content":"Profil cu 7-camere"},
+                    {"content":"Etanşare cu opritor şi etanşare centrală"},
+                    {"content":"Adâncime constructivă: 76 mm"},
+                    {"content":"Uw = 0,73 W/(m²K)"},
+                    {"content":"Vitraj: până la 56 mm"},
+                    {"content":"Protecţie fonică: până la 48 dB"},
+                    {"content":"Dispozitiv anti-efracţie: până la RC 2"}
+                ],
+                "image":"/img/greenEvolutionbox.jpg"
             }
         ],
         "message":[{

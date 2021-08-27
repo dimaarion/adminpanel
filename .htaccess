@@ -3,4 +3,4 @@ ErrorDocument 404 /err.php
 RewriteEngine On
 RewriteRule ^([a-z-_A-Z_0-9np]+)$ ?alias=$1
 RewriteRule ^([a-z-_A-Z_0-9]+)/([ru||md]+)$ ?alias=$1&id=$2
-
+RewriteRule ^([a-z-_A-Z_0-9]+)/([npmessage]+)/([ru||md]+)$ ?alias=$1&id=$2&id2=$3
