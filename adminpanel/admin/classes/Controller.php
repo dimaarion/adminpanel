@@ -305,8 +305,8 @@ class Controller
                     $sansize->getrequest('title'),
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
-                    htmlentities($_REQUEST['subcontent'], ENT_HTML5),
-                    htmlentities($_REQUEST['content'], ENT_HTML5),
+                    htmlentities($_REQUEST['redactor'], ENT_HTML5),
+                    htmlentities($_REQUEST['redactor2'], ENT_HTML5),
                     $sansize->getrequest('lang')
 
                 ],
@@ -337,8 +337,8 @@ class Controller
                     $sansize->getrequest('title'),
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
-                    htmlentities($_REQUEST['subcontent'], ENT_HTML5),
-                    htmlentities($_REQUEST['content'], ENT_HTML5),
+                    htmlentities($_REQUEST['redactor'], ENT_HTML5),
+                    htmlentities($_REQUEST['redactor2'], ENT_HTML5),
                     $sansize->getrequest('lang'),
                     
 
