@@ -36,4 +36,4 @@ $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($contro
                 ?>
 
         </title>
-        <link href="/static/css/main.e67c6855.chunk.css" rel="stylesheet">
+        <link href="/static/css/main.bb1f8e97.chunk.css" rel="stylesheet">
