@@ -22,6 +22,7 @@ public function __construct($to, $from, $tema, $message = [])
         /* Заголовки */
         $headers = "From: $this->from\nReply-To: $this->from\n";
         $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"";
+        $headers .= "Reply-To: reply-to@sandaniprim.md\r\n"; 
         $body = "--$boundary\n";
         /* Присоединяем текстовое сообщение */
         foreach ($this->message as $key => $value) {

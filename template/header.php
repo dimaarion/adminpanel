@@ -5,7 +5,7 @@ $menu_alias =  $menuClass->queryRow('alias', $controller->indexPage($controller-
 $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($controller->alias, ''));
 ?>
 <meta charset="utf-8" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
@@ -36,4 +36,4 @@ $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($contro
                 ?>
 
         </title>
-        <link href="/static/css/main.bb1f8e97.chunk.css" rel="stylesheet">
+        <link href="/static/css/main.c433bd60.chunk.css" rel="stylesheet">
