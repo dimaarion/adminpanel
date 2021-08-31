@@ -1,7 +1,7 @@
-AuthType Basic
-AuthName "Password Protected Area"
-AuthUserFile 	/home/users/d/dimaarion/domains/sandaniprim.md/adminpanel/.htpasswd
-Require valid-user
+#AuthType Basic
+#AuthName "Password Protected Area"
+#AuthUserFile 	/home/users/d/dimaarion/domains/sandaniprim.md/adminpanel/.htpasswd
+#Require valid-user
 
 RewriteEngine On
 RewriteRule ^([a-z-_A-Z_0-9]+)$ ?page=$1

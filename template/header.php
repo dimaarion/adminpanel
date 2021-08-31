@@ -37,3 +37,12 @@ $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($contro
 
         </title>
         <link href="/static/css/main.c433bd60.chunk.css" rel="stylesheet">
+        <style>
+                <?php
+                foreach ($controller->get_json('./adminpanel/editor/styleFonts.json') as $key => $value) {
+                       print_r($value);   
+                }
+               
+                
+                ?>
+        </style>

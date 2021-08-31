@@ -12,6 +12,7 @@ class Controller
     public $nmenu;
     public $page;
     public $countPag = 2;
+    public $styleFonts = "";
 
     public function inputs($inputs)
     {
@@ -117,7 +118,7 @@ class Controller
     public function get_json($f)
     {
         if (is_file($f)) {
-            return file_get_contents($f);
+            return json_decode(file_get_contents($f));
         } else {
             return $this->errFiles;
         }
@@ -126,7 +127,7 @@ class Controller
     public function set_json($f, $content)
     {
         if (is_file($f)) {
-            return  file_put_contents($f, json_encode($content));
+            return  file_put_contents($f, json_encode(["fonts"=>$content]));
         } else {
             return $this->errFiles;
         }
