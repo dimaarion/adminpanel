@@ -1,0 +1,93 @@
+Почта 
+
+https://mail.google.com
+Логин ooo.sandani@gmail.com 
+Пароль yWcXNwSV6K
+
+Онлайн консультант https://web.quickchat.pro/
+Андрей Парасюк
+Логин ooo.sandani@gmail.com
+Пароль hdotsjhd
+<---->
+<!-- BEGIN QUICKCHAT CODE -->
+<script type='text/javascript'>(function(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://quickchat.pro/script/widget?w=1058d00d08'; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
+<!-- END QUICKCHAT CODE -->
+<---->
+Онлайн консультант https://app.jivosite.com/
+Андрей Парасюк
+Логин ooo.sandani@gmail.com
+Пароль Еhdotsjhd55
+<--->
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'l14ucaSPiJ';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+<---->
+
+Сайт
+
+Логин: sandani  
+Пароль: 08197919an
+
+Домен 
+
+http://rdn.name
+Логин sandani
+Пароль TBf2surd2h
+
+
+Хостинг 
+
+Панель управления: https://cp.mchost.ru/
+Логин (username): a141687
+Пароль (password): hkP1f5pbnJt7
+
+
+
+FTP/SSH:
+
+Сайт	sandani.ru        
+Хост a141687.ftp.mchost.ru                
+Логин	 a141687_sd        
+Пароль hLvhh0KdD6	
+
+
+ns1.jino.ru (217.107.34.200)
+ns2.jino.ru (217.107.217.16)
+ns3.jino.ru (217.107.219.170)
+ns4.jino.ru (81.177.139.205)
+
+		
+
+
+
+MySQL:
+
+Хост	a141687.mysql.mchost.ru                
+База	a141687_sand        
+Логин	 a141687_sand       
+Пароль e3cM4hlE9E
+			
+
+вход в панель управления 
+
+login: sandani
+password: 08197919an  
+
+
+Капча
+6LeIlpgUAAAAAIz0wR0740bn5Ot_BR6N07PYGNZ9 в html
+
+6LeIlpgUAAAAAM51qS6F5kBAigqmVZd1EIL_gHcC на сервер
+
+
+Домен для sandaniprim.md
+login: sandaniprim
+password: 08197919an
+
+https://billing.tophost.md/index.php
+password: _p:T7F@J0wis
+
+
+
