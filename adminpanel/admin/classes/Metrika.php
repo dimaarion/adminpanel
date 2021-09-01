@@ -1,84 +1,124 @@
 <?php 
 class Metrika extends Controller
 {
-    //счетчик
-    private $sNameCount = 'pageCount';
-    private $sCount = 0;
-    //пользователь
-    private $user = 'user';
-    private $day = 'day';
-    private $month = "month";
-    private $year = 'year';
-    private $pagesName = [];
-    private $names = 'names';
+    //счетчик    
+    public $fUrl = './adminpanel/host/host.json';
+    private $fUrlPage = './adminpanel/host/hostPage.json';
+    public $vizCount = 0;
+    
 
-    private function start()
+    private function objInArray($obj)
     {
-        session_start();
+        $a = [];
+        if(isset($obj)){
+            foreach ($obj as $key => $value) {
+           $a[$key] = $value;            
+            }
+        }
+        return $a;
     }
 
-    private function createSessioin($n,$p)
+    private function intZeroDate($d1,$d2,$p)
     {
-        if(!isset($_SESSION[$n])){
-            $_SESSION[$n] = $p;
+        if($d1 > $d2){
+            return 0;
+        }else{
+            return $p + 1;
         }
     }
 
     private function countHost()
     {
-        foreach ($this->get_json('./adminpanel/host/host.json') as $key => $value) {
-            switch ($key) {
-                case 'count':
-                    $this->set_json('./adminpanel/host/host.json',["count"=>$value + 1]);
-                default:
-                    break;
-            }
-            echo($value);   
-     }
-       
-    }
-
-    private function updateSessiion($n,$p)
-    {
-        if(isset($_SESSION[$n])){
-            $_SESSION[$n] = $p;
+        if($this->get_json($this->fUrl)){
+         $jsonArray = $this->objInArray($this->get_json($this->fUrl));
+           $this->set_json($this->fUrl,[
+               "count"=>$jsonArray['count'] + 1,
+               "user"=>$_SERVER['HTTP_USER_AGENT'], 
+               "hostUn"=>$jsonArray['hostUn'], 
+               "day"=>date('y',$_SERVER['REQUEST_TIME']),
+               "hostDay"=>$this->intZeroDate(date('y',$_SERVER['REQUEST_TIME']),$jsonArray['day'],$jsonArray['hostDay']),
+               "hostDayUn"=>$jsonArray['hostDayUn'] 
+            ]);
+           if($jsonArray['user'] != $_SERVER['HTTP_USER_AGENT']){
+            $this->set_json($this->fUrl,[
+                "count"=>$jsonArray['count'] + 1,
+                "user"=>$_SERVER['HTTP_USER_AGENT'], 
+                "hostUn"=>$jsonArray['hostUn'] + 1, 
+                "day"=>date('y',$_SERVER['REQUEST_TIME']),
+                "hostDay"=>$this->intZeroDate(date('y',$_SERVER['REQUEST_TIME']),$jsonArray['day'],$jsonArray['hostDay']),
+                "hostDayUn"=>$this->intZeroDate(date('y',$_SERVER['REQUEST_TIME']),$jsonArray['day'],$jsonArray['hostDayUn']) 
+            ]);
+           }
+        }else{
+             $this->set_json($this->fUrl,[
+                 "count"=>1,
+                 "user"=>$_SERVER['HTTP_USER_AGENT'], 
+                 "hostUn"=>1, 
+                 'day'=>date('y',$_SERVER['REQUEST_TIME']),
+                 "hostDay"=>1,
+                 "hostDayUn"=>1  
+                ]);
         }
     }
-
-    private function pages($array = [])
-    {
-        
-        foreach ($array as $key => $value) {
-            if(!isset($_SESSION[$value['art_names']])){
-                $_SESSION[$value['art_names']] = 0;
-            }
-            if($_REQUEST['alias'] == $value['art_alias']){
-                array_push($this->pagesName,[$value['art_names'], $_SESSION[$value['art_names']] = $_SESSION[$value['art_names']] + 1]);
+    
+    private function pages($array = []){ 
+        $a = [];
+        if($this->get_json($this->fUrlPage)){
+            $i = -1;
+            $jsonArray = $this->objInArray($this->get_json($this->fUrlPage));
+            $jsonArrayPage = $this->objInArray($jsonArray['page']);
+            foreach ($array as $key => $value) { 
+                $i++;
+                if($this->objInArray($jsonArrayPage[$i])['alias'] == $_REQUEST['alias']){
+                     print_r($this->objInArray($jsonArrayPage[$i])['hostViz']); 
+                     array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>$this->objInArray($jsonArrayPage[$i])['hostViz'] + 1]);
+                     $this->set_json($this->fUrlPage,["page"=>$a]);
+                }else{
+                    if($this->objInArray($jsonArrayPage[$i])['hostViz'] == null){
+                        array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>1]);
+                        $this->set_json($this->fUrlPage,["page"=>$a]);
+                    }else{
+                        array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>$this->objInArray($jsonArrayPage[$i])['hostViz']]);
+                        $this->set_json($this->fUrlPage,["page"=>$a]);
+                    }
+                    
+                }
+               
                 
-            }  
-        }
+               
+            }
 
+        }else{
+            foreach ($array as $key => $value) { 
+                array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>1]);
+                $this->set_json($this->fUrlPage,["page"=>$a]);
+            }
+        }
+        
     }
+    
+        
+            
+     public function viewCount()
+     {
+        if($this->get_json($this->fUrl)){
+           $jsonArray = $this->objInArray($this->get_json($this->fUrl));
+        }else{
+            $jsonArray = [];
+        }
+        return $jsonArray;
+     }           
+            
+
+    
 
 
 
     public function display($pages = [])
     { 
-        $this->countHost();
-        /*$this->start();
-        $this->createSessioin($this->sNameCount,$this->sCount);
-        $this->createSessioin($this->user,$_SERVER['HTTP_USER_AGENT']);
-        $this->createSessioin($this->date,date('d', $_SERVER['REQUEST_TIME']));
-        $this->createSessioin($this->month,date('m', $_SERVER['REQUEST_TIME']));
-        $this->createSessioin($this->year,date('y', $_SERVER['REQUEST_TIME']));
-       
+        $this->countHost(); 
         $this->pages($pages);
-        $this->createSessioin($this->names,$this->pagesName);
-        $this->updateSessiion($this->user,$_SERVER['HTTP_USER_AGENT']);
-        $this->updateSessiion($this->date,date('d', $_SERVER['REQUEST_TIME']));
-        $this->updateSessiion($this->month,date('m', $_SERVER['REQUEST_TIME']));
-        $this->updateSessiion($this->year,date('y', $_SERVER['REQUEST_TIME']));
-       print_r($_SESSION);*/
+      
     }
    
 }

@@ -128,7 +128,7 @@ class Controller
     {
         if($f != ""){
             if (is_file($f)) {
-                return  file_put_contents($f, json_encode($content));
+                return  file_put_contents($f, json_encode($content),LOCK_EX);
             } else {
                 return $this->errFiles;
             }

@@ -5,6 +5,7 @@ $articleClassRow = new DSelect('article');
 $articleClassRows = new DSelect('article');
 $menu_class = new Menu();
 $metrika = new Metrika();
+
 //Переменные
 
 $controller->limit = 4;
