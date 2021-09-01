@@ -1,5 +1,5 @@
 <?php 
-class Metrika 
+class Metrika extends Controller
 {
     //счетчик
     private $sNameCount = 'pageCount';
@@ -26,9 +26,16 @@ class Metrika
 
     private function countHost()
     {
-        if(isset($_SESSION[$this->sNameCount])){
-            $_SESSION[$this->sNameCount] = $_SESSION[$this->sNameCount] + 1;
-        }
+        foreach ($this->get_json('./adminpanel/host/host.json') as $key => $value) {
+            switch ($key) {
+                case 'count':
+                    $this->set_json('./adminpanel/host/host.json',["count"=>$value + 1]);
+                default:
+                    break;
+            }
+            echo($value);   
+     }
+       
     }
 
     private function updateSessiion($n,$p)
@@ -53,22 +60,25 @@ class Metrika
 
     }
 
+
+
     public function display($pages = [])
-    {
-        $this->start();
+    { 
+        $this->countHost();
+        /*$this->start();
         $this->createSessioin($this->sNameCount,$this->sCount);
         $this->createSessioin($this->user,$_SERVER['HTTP_USER_AGENT']);
         $this->createSessioin($this->date,date('d', $_SERVER['REQUEST_TIME']));
         $this->createSessioin($this->month,date('m', $_SERVER['REQUEST_TIME']));
         $this->createSessioin($this->year,date('y', $_SERVER['REQUEST_TIME']));
-        $this->countHost();
+       
         $this->pages($pages);
         $this->createSessioin($this->names,$this->pagesName);
         $this->updateSessiion($this->user,$_SERVER['HTTP_USER_AGENT']);
         $this->updateSessiion($this->date,date('d', $_SERVER['REQUEST_TIME']));
         $this->updateSessiion($this->month,date('m', $_SERVER['REQUEST_TIME']));
         $this->updateSessiion($this->year,date('y', $_SERVER['REQUEST_TIME']));
-       print_r($_SESSION);
+       print_r($_SESSION);*/
     }
    
 }

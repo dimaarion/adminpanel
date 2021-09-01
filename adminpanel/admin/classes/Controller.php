@@ -124,13 +124,16 @@ class Controller
         }
     }
 
-    public function set_json($f, $content)
+    public function set_json($f = "", $content = ["test"=>"test"])
     {
-        if (is_file($f)) {
-            return  file_put_contents($f, json_encode(["fonts"=>$content]));
-        } else {
-            return $this->errFiles;
+        if($f != ""){
+            if (is_file($f)) {
+                return  file_put_contents($f, json_encode($content));
+            } else {
+                return $this->errFiles;
+            }
         }
+        
     }
 
     public function dirFileName($nameDir)
