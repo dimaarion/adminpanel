@@ -69,8 +69,7 @@ class Metrika extends Controller
             $jsonArrayPage = $this->objInArray($jsonArray['page']);
             foreach ($array as $key => $value) { 
                 $i++;
-                if($this->objInArray($jsonArrayPage[$i])['alias'] == $_REQUEST['alias']){
-                     print_r($this->objInArray($jsonArrayPage[$i])['hostViz']); 
+                if($this->objInArray($jsonArrayPage[$i])['alias'] == $_REQUEST['alias']){ 
                      array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>$this->objInArray($jsonArrayPage[$i])['hostViz'] + 1]);
                      $this->set_json($this->fUrlPage,["page"=>$a]);
                 }else{
