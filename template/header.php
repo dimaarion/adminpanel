@@ -7,6 +7,7 @@ $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($contro
 <meta charset="utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="yandex-verification" content="ca53ee3307b22be8" />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
     <link
@@ -36,7 +37,7 @@ $artRow = $articleClassRow->queryRow('art_alias', $controller->indexPage($contro
                 ?>
 
         </title>
-        <link href="/static/css/main.c433bd60.chunk.css" rel="stylesheet">
+        <link href="/static/css/main.150bd261.chunk.css" rel="stylesheet">
         <style>
                 <?php
                 foreach ($controller->get_json('./adminpanel/editor/styleFonts.json') as $key => $value) {

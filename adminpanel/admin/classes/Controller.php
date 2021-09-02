@@ -525,6 +525,7 @@ Disallow: /index.php?
 Disallow: /?
 Disallow: /file/
 Disallow: /%
+Disallow: /.js$
 
 
 User-agent: *
@@ -540,6 +541,7 @@ Disallow: /index.php?
 Disallow: /?
 Disallow: /file/
 Disallow: /%
+Disallow: /.js$
 Host:https://' . $_SERVER['HTTP_HOST'] . '/';
     }
 
