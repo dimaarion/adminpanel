@@ -18,3 +18,6 @@
     foreach ($controller->dirFileName($controller->dirExt('./static/css')) as $key => $value):?>
     <link href="/adminpanel/static/css/<?php echo $value ?>" rel="stylesheet">
     <?php endforeach; ?>
+    <!-- metrika -->
+    <link href="/adminpanel/host/css/main.a170ce4f.chunk.css" rel="stylesheet">
+    <!-- metrika -->
