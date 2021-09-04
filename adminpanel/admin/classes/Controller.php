@@ -13,6 +13,7 @@ class Controller
     public $page;
     public $countPag = 2;
     public $styleFonts = "";
+    public $nameSite = "";
 
     public function inputs($inputs)
     {
@@ -189,10 +190,34 @@ class Controller
             tel_content VARCHAR(255) NOT NULL,
             PRIMARY KEY (`tel_id`))"
         );
+
+        $tableMenu->createTable(
+            "CREATE TABLE  settings (
+            settings_id INT(6) AUTO_INCREMENT NOT NULL,
+            name_site VARCHAR(255) NOT NULL,
+            PRIMARY KEY (`settings_id`))"
+        );
     }
 
     public function insertTable($sansize)
     {
+        //Добавление названия сайта 
+        $settings = new DSelect('settings');
+        $this->nameSite = $settings->queryRow('settings_id', 1); 
+        if ($this->nameSite['name_site'] == "") {
+            $din =  new DInsert(
+                'settings',
+                [
+                    'name_site'
+                ],
+                [
+                    'My site'
+                ]
+            );
+
+            $this->err = $din->err;
+            
+        }
         //Добавление номера тел
         if (@$_REQUEST['telsavebutton']) {
             $din =  new DUpdate(

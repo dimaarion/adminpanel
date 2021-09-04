@@ -51,12 +51,12 @@ class Metrika extends Controller
            }
         }else{
              $this->set_json($this->fUrl,[
-                 "count"=>1,
+                 "count"=>0,
                  "user"=>$_SERVER['HTTP_USER_AGENT'], 
-                 "hostUn"=>1, 
+                 "hostUn"=>0, 
                  'day'=>date('y',$_SERVER['REQUEST_TIME']),
-                 "hostDay"=>1,
-                 "hostDayUn"=>1  
+                 "hostDay"=>0,
+                 "hostDayUn"=>0
                 ]);
         }
     }
@@ -74,7 +74,7 @@ class Metrika extends Controller
                      $this->set_json($this->fUrlPage,["page"=>$a]);
                 }else{
                     if($this->objInArray($jsonArrayPage[$i])['hostViz'] == null){
-                        array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>1]);
+                        array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>0]);
                         $this->set_json($this->fUrlPage,["page"=>$a]);
                     }else{
                         array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>$this->objInArray($jsonArrayPage[$i])['hostViz']]);
@@ -89,7 +89,7 @@ class Metrika extends Controller
 
         }else{
             foreach ($array as $key => $value) { 
-                array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>1]);
+                array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>0]);
                 $this->set_json($this->fUrlPage,["page"=>$a]);
             }
         }
