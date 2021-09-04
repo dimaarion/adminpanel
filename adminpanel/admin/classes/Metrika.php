@@ -62,6 +62,7 @@ class Metrika extends Controller
     }
     
     private function pages($array = []){ 
+        
         $a = [];
         if($this->get_json($this->fUrlPage)){
             $i = -1;
@@ -80,6 +81,7 @@ class Metrika extends Controller
                         array_push($a,['name'=>$value['art_names'],'alias'=>$value['art_alias'],'hostViz'=>$this->objInArray($jsonArrayPage[$i])['hostViz']]);
                         $this->set_json($this->fUrlPage,["page"=>$a]);
                     }
+                    
                     
                 }
                
