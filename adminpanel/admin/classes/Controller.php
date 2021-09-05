@@ -218,6 +218,23 @@ class Controller
             $this->err = $din->err;
             
         }
+        //Обновление названия сайта
+        if (@$_REQUEST['telsavebutton']) {
+            $din =  new DUpdate(
+                'settings',
+                [
+                    'name_site',
+                    'settings_id'
+                ],
+                [
+                    $sansize->getrequest('nameSiteSave')
+                ],
+                $sansize->getrequest('settings_id')
+            );
+
+            $this->err = $din->err;
+            header('location:/adminpanel/settings');
+        }
         //Добавление номера тел
         if (@$_REQUEST['telsavebutton']) {
             $din =  new DUpdate(
