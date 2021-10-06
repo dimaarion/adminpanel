@@ -161,7 +161,7 @@ class Controller
             keywords VARCHAR(255) NOT NULL,
             descriptions VARCHAR(255) NOT NULL,
             parent_id int(11) NOT NULL,
-            lang VARCHAR(11) NOT NULL,
+            position int(11) NOT NULL,
             PRIMARY KEY (`menu_id`))"
         );
         $tableMenu->createTable(
@@ -182,7 +182,6 @@ class Controller
             art_description VARCHAR(255) NOT NULL,
             art_subcontent text(255) NOT NULL,
             art_content text(255) NOT NULL,
-            art_lang VARCHAR(11) NOT NULL,
             PRIMARY KEY (`art_id`))"
         );
 
@@ -201,59 +200,39 @@ class Controller
         );
     }
 
+
+    public function insertDbDefault($tb,$idName,$colName,$id,$str)
+    {
+        $settings = new DSelect($tb);
+        $name = $settings->queryRow($idName, $id); 
+        if ($name[$colName] == "") {
+            $din =  new DInsert(
+                $tb,
+                [
+                    $colName
+                ],
+                [
+                    $str
+                ]
+            );
+
+            $this->err = $din->err;
+            
+        }
+    }
+
+
+
     public function insertTable($sansize)
     {
         //Добавление названия сайта 
-        $settings = new DSelect('settings');
-        $this->nameSite = $settings->queryRow('settings_id', 1); 
-        if ($this->nameSite['name_site'] == "") {
-            $din =  new DInsert(
-                'settings',
-                [
-                    'name_site'
-                ],
-                [
-                    'My site'
-                ]
-            );
-
-            $this->err = $din->err;
-            
-        }
+        $this->insertDbDefault('settings','settings_id','name_site',3,'My site');
+       
         //по умолчанию добавить почту
-        $messageS = new DSelect('settings');
-        $this->message = $messageS->queryRow('settings_id', 2); 
-        if ($this->message['name_site'] == "") {
-            $din =  new DInsert(
-                'settings',
-                [
-                    'name_site'
-                ],
-                [
-                    'message@mail.ru'
-                ]
-            );
-
-            $this->err = $din->err;
-            
-        }
+        $this->insertDbDefault('settings','settings_id','name_site',2,'message@mail.ru');
         //по умолчанию добавить номер тел
-        $telS = new DSelect('tel');
-        $this->tel = $telS->queryRow('tel_id', 1); 
-        if ($this->tel['tel_content'] == "") {
-            $din =  new DInsert(
-                'tel',
-                [
-                    'tel_content'
-                ],
-                [
-                    '0777 777 77'
-                ]
-            );
-
-            $this->err = $din->err;
-            
-        }
+        $this->insertDbDefault('tel','tel_id','tel_content',1,'0 777 777 77');
+        
         //Обновление названия сайта
         if (@$_REQUEST['telsavebutton']) {
             $din =  new DUpdate(
@@ -299,7 +278,7 @@ class Controller
                     'keywords',
                     'descriptions',
                     'parent_id',
-                    'lang'
+                    'position'
                 ],
                 [
                     $sansize->getrequest('alias'),
@@ -308,7 +287,7 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     $sansize->getrequest('parent_id'),
-                    $sansize->getrequest('lang')
+                    $sansize->getrequest('position')
                 ]
             );
 
@@ -326,7 +305,7 @@ class Controller
                     'keywords',
                     'descriptions',
                     'parent_id',
-                    'lang',
+                    'position',
                     'menu_id'
 
                 ],
@@ -337,13 +316,13 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     $sansize->getrequest('parent_id'),
-                    $sansize->getrequest('lang')
+                    $sansize->getrequest('position')
                 ],
                 $sansize->getrequest('menu')
             );
 
             $this->err = $din->err;
-            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('position'));
         }
         // добавление статьи к меню
         if (@$_REQUEST['update_menu_art_save']) {
@@ -361,7 +340,7 @@ class Controller
 
                     ]
                 );
-                header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
+                header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('position'));
             } catch (\Throwable $th) {
                 $this->err = 'Ошибка добавления статьи';
             }
@@ -378,7 +357,6 @@ class Controller
                     'art_description',
                     'art_subcontent',
                     'art_content',
-                    'art_lang',
                     'art_id'
                 ],
                 [
@@ -388,15 +366,14 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     htmlentities($_REQUEST['redactor'], ENT_HTML5),
-                    htmlentities($_REQUEST['redactor2'], ENT_HTML5),
-                    $sansize->getrequest('lang')
+                    htmlentities($_REQUEST['redactor2'], ENT_HTML5)
 
                 ],
                 $sansize->getrequest('update_art_id')
             );
 
             $this->err = $din->err;
-            header('location:/adminpanel/articles/updateart/' . $sansize->getrequest('update_art_id').'/'.$sansize->getrequest('lang'));
+            header('location:/adminpanel/articles/updateart/' . $sansize->getrequest('update_art_id'));
         }
         //Добавление статьи
         if (@$_REQUEST['new_art_save']) {
@@ -409,8 +386,8 @@ class Controller
                     'art_keyword',
                     'art_description',
                     'art_subcontent',
-                    'art_content',
-                    'art_lang',
+                    'art_content'
+                    
                     
                 ],
                 [
@@ -420,8 +397,8 @@ class Controller
                     $sansize->getrequest('keywords'),
                     $sansize->getrequest('description'),
                     htmlentities($_REQUEST['redactor'], ENT_HTML5),
-                    htmlentities($_REQUEST['redactor2'], ENT_HTML5),
-                    $sansize->getrequest('lang'),
+                    htmlentities($_REQUEST['redactor2'], ENT_HTML5)
+                    
                     
 
                 ]
@@ -441,7 +418,7 @@ class Controller
         if ($_REQUEST['update_menu_art_delete']) {
             $d = new DDelete('art_menu', 'articles', [$_REQUEST['menu_articles']]);
             $d->delete();
-            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('lang'));
+            header('location:/adminpanel/menu/updatemenu/' . $sansize->getrequest('menu')."/".$sansize->getrequest('position'));
         }
         if ($_REQUEST['art_delete']) {
             $d = new DDelete('article', 'art_id', $_REQUEST['delete_art_id']);

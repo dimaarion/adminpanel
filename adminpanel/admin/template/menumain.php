@@ -30,7 +30,7 @@
 					[
 						'type' => 'checkbox',
 						'value' => $t['menu_id'],
-						'names' => '<a href = "/adminpanel/menu/updatemenu/' . $t['menu_id'] .'/'.$t['lang']. '">' . $t['names'] . '</a>',
+						'names' => '<a href = "/adminpanel/menu/updatemenu/' . $t['menu_id'] .'/'.$t['position']. '">' . $t['names'] . '</a>',
 						'name' => 'delete_menu_id[]',
 						'id' => 'delete_menu_id' . $t['menu_id'],
 						'inputclass' => 'col-1',
