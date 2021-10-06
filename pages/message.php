@@ -27,7 +27,9 @@ function validMaill($val)
 }
 
 $sansize = new Sansize();
-
+$sittensMessage = new DSelect('settings');
+$nameMessage = $sittensMessage->queryRow('settings_id', 2); 
+$hostName = explode(".",$_SERVER['HTTP_HOST']) ;
 $name = $sansize->getrequest('username');
 $tel = $sansize->getrequest('usertel');
 $mail = $sansize->getrequestEmail('usermail');
@@ -59,7 +61,7 @@ if($lang == "md"){
 if ($countform != 0 && $countformto != 0) {
     if ($nameh != 0 && $telh != 0 && $mailh != 0 && $temah != 0 && $contenth != 0 && $x > 0 && $y > 0) {
         if(validMaill($mail)){
-            new DMail('19197908an@mail.ru', 'sandaniprim<noreply@sandaniprim.md>', $tema, ['name' => 'Ф. И. О: ' . $name, 'Телефон: ' . 'tel' => $tel, 'mail' => 'Почта: ' . $mail, 'message' => $content]);
+            new DMail($nameMessage["name_site"], $hostName[0].'<noreply@'.$_SERVER['HTTP_HOST'], $tema, ['name' => 'Ф. И. О: ' . $name, 'Телефон: ' . 'tel' => $tel, 'mail' => 'Почта: ' . $mail, 'message' => $content]);
        echo json_encode([$connect,1]);
         // header('location:/message.html?id=Сообщение отправлено!');
         }else{

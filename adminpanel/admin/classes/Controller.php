@@ -14,6 +14,8 @@ class Controller
     public $countPag = 2;
     public $styleFonts = "";
     public $nameSite = "";
+    public $tel = "";
+    public $message = "";
 
     public function inputs($inputs)
     {
@@ -212,6 +214,40 @@ class Controller
                 ],
                 [
                     'My site'
+                ]
+            );
+
+            $this->err = $din->err;
+            
+        }
+        //по умолчанию добавить почту
+        $messageS = new DSelect('settings');
+        $this->message = $messageS->queryRow('settings_id', 2); 
+        if ($this->message['name_site'] == "") {
+            $din =  new DInsert(
+                'settings',
+                [
+                    'name_site'
+                ],
+                [
+                    'message@mail.ru'
+                ]
+            );
+
+            $this->err = $din->err;
+            
+        }
+        //по умолчанию добавить номер тел
+        $telS = new DSelect('tel');
+        $this->tel = $telS->queryRow('tel_id', 1); 
+        if ($this->tel['tel_content'] == "") {
+            $din =  new DInsert(
+                'tel',
+                [
+                    'tel_content'
+                ],
+                [
+                    '0777 777 77'
                 ]
             );
 
