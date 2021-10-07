@@ -78,13 +78,15 @@ $controller->includer(
                 ]
             );
             ?>
-            <div class="col mt-4 p-0">
-			<?php  $controller->includer(true, true, './admin/template/select.php', $controller,'',''); ?>
-			</div>
+
         </div>
 
         <div class="col">
-            <div class="col mt-2">
+
+            <div class="col mt-1">
+                 <div class="col mb-4 p-0">
+            <?php  $controller->includer(true, true, './admin/template/select.php', $controller,'',''); ?>
+            </div>
                 <label for="parent_id">
                     <h5>
                         Категории

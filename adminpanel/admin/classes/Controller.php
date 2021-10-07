@@ -136,7 +136,7 @@ class Controller
                 return $this->errFiles;
             }
         }
-        
+
     }
 
     public function dirFileName($nameDir)
@@ -204,7 +204,7 @@ class Controller
     public function insertDbDefault($tb,$idName,$colName,$id,$str)
     {
         $settings = new DSelect($tb);
-        $name = $settings->queryRow($idName, $id); 
+        $name = $settings->queryRow($idName, $id);
         if ($name[$colName] == "") {
             $din =  new DInsert(
                 $tb,
@@ -217,7 +217,7 @@ class Controller
             );
 
             $this->err = $din->err;
-            
+
         }
     }
 
@@ -225,14 +225,14 @@ class Controller
 
     public function insertTable($sansize)
     {
-        //Добавление названия сайта 
-        $this->insertDbDefault('settings','settings_id','name_site',3,'My site');
-       
+        //Добавление названия сайта
+        $this->insertDbDefault('settings','settings_id','name_site',1,'My site');
+
         //по умолчанию добавить почту
         $this->insertDbDefault('settings','settings_id','name_site',2,'message@mail.ru');
         //по умолчанию добавить номер тел
         $this->insertDbDefault('tel','tel_id','tel_content',1,'0 777 777 77');
-        
+
         //Обновление названия сайта
         if (@$_REQUEST['telsavebutton']) {
             $din =  new DUpdate(
@@ -292,7 +292,7 @@ class Controller
             );
 
             $this->err = $din->err;
-            
+
         }
         // Редактирование меню
         if (@$_REQUEST['update_menu_save']) {
@@ -387,8 +387,8 @@ class Controller
                     'art_description',
                     'art_subcontent',
                     'art_content'
-                    
-                    
+
+
                 ],
                 [
                     $sansize->getrequest('names'),
@@ -398,8 +398,8 @@ class Controller
                     $sansize->getrequest('description'),
                     htmlentities($_REQUEST['redactor'], ENT_HTML5),
                     htmlentities($_REQUEST['redactor2'], ENT_HTML5)
-                    
-                    
+
+
 
                 ]
             );
@@ -602,7 +602,7 @@ Host:https://' . $_SERVER['HTTP_HOST'] . '/';
 
     public function createSitemap($arr = [])
     {
-        
+
         $d = [];
         foreach ($arr as $key => $value) {
             $d[$key] =  "<url><loc>https://" . $_SERVER['HTTP_HOST'] . "/" . $value['art_alias'] . "</loc></url> \n";
