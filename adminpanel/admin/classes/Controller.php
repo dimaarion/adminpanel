@@ -222,19 +222,9 @@ class Controller
     }
 
 
-
-    public function insertTable($sansize)
+    public function settinsUpdate($sansize,$saveBtn,$names,$id)
     {
-        //Добавление названия сайта
-        $this->insertDbDefault('settings','settings_id','name_site',1,'My site');
-
-        //по умолчанию добавить почту
-        $this->insertDbDefault('settings','settings_id','name_site',2,'message@mail.ru');
-        //по умолчанию добавить номер тел
-        $this->insertDbDefault('tel','tel_id','tel_content',1,'0 777 777 77');
-
-        //Обновление названия сайта
-        if (@$_REQUEST['telsavebutton']) {
+        if (@$_REQUEST[$saveBtn]) {
             $din =  new DUpdate(
                 'settings',
                 [
@@ -242,14 +232,34 @@ class Controller
                     'settings_id'
                 ],
                 [
-                    $sansize->getrequest('nameSiteSave')
+                    $sansize->getrequest($names)
                 ],
-                $sansize->getrequest('settings_id')
+                $sansize->getrequest($id)
             );
 
             $this->err = $din->err;
             header('location:/adminpanel/settings');
         }
+    }
+
+    public function insertTable($sansize)
+    {
+        //Добавление названия сайта
+        $this->insertDbDefault('settings','settings_id','name_site',1,'My site');
+        //по умолчанию добавить почту
+        $this->insertDbDefault('settings','settings_id','name_site',2,'message@mail.ru');
+        //по умолчанию колличество статей на странице
+        $this->insertDbDefault('settings','settings_id','name_site',3,'3');
+        //по умолчанию добавить номер тел
+        $this->insertDbDefault('tel','tel_id','tel_content',1,'0 777 777 77');
+
+        //Обновление названия сайта
+        $this->settinsUpdate($sansize,'telsavebutton','nameSiteSave','nameSiteSaveid');
+        //Обновление почты сайта
+        $this->settinsUpdate($sansize,'telsavebutton','nameMailSave','nameMailSaveid');
+        
+        //Обновление колличество статей на странице
+        $this->settinsUpdate($sansize,'telsavebutton','nameCountSave','nameCountSaveid');
         //Добавление номера тел
         if (@$_REQUEST['telsavebutton']) {
             $din =  new DUpdate(

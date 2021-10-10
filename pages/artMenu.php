@@ -1,10 +1,10 @@
 <?php
 require("header.php");
-
-$sansize = new Sansize();
-$controller  = new Controller();
 $art_menu_select = new DSelect('menu,article,art_menu');
-$controller->limit = 4;
+$settings = new DSelect('settings');
+$nameSite = $settings->queryRow('settings_id', 3); 
+$limit = $nameSite['name_site'];
+$controller->limit = $limit;
 $countPageMin = ($controller->twocorrectthird($sansize->getrequestInt("id"), '', 1, $sansize->getrequestInt("id")) * $controller->limit) - $controller->limit;
 $art_menu = $art_menu_select->queryRowWhere('menu.menu_id = art_menu.menu AND art_id = art_menu.articles AND menu.menu_id ="' 
 . $sansize->getrequestInt("menu_id").'" LIMIT '. $countPageMin.','. $controller->limit.'');

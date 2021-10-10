@@ -37,7 +37,7 @@
                 'type' => 'checkbox',
                 'value' => $t['art_id'],
 
-                'names' => '<a href = "/adminpanel/articles/updateart/' . $t['art_id'] .'/'.$t['art_lang']. '">' . $t['art_names'] . '</a>',
+                'names' => '<a href = "/adminpanel/articles/updateart/' . $t['art_id'].'">' . $t['art_names'] . '</a>',
 
                 'name' => 'delete_art_id[]',
                 'id' => 'delete_art_id' . $t['art_id'],

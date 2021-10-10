@@ -15,7 +15,7 @@ Disallow: /.js$
 
 User-agent: *
 Allow: /
-Sitemap: https://localhost/sitemap/sitemap.xml
+Sitemap: https://adminpanel/sitemap/sitemap.xml
 Disallow: /template/
 Disallow: /admin/
 Disallow: /img/
@@ -27,4 +27,4 @@ Disallow: /?
 Disallow: /file/
 Disallow: /%
 Disallow: /.js$
-Host:https://localhost/
+Host:https://adminpanel/
