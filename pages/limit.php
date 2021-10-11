@@ -1,8 +1,5 @@
 <?php
 require("header.php");
-$select = new DSelect('article');
-$article = $select->queryRows();
-$settings = new DSelect('settings');
-$nameSite = $settings->queryRow('settings_id', 3); 
-$limit = $nameSite['name_site'];
-echo json_encode(count($article)/$limit);
+$art_menu_select = new DSelect('menu,article,art_menu');
+$art_menu = $art_menu_select->queryRowWhere('menu.menu_id = art_menu.menu AND art_id = art_menu.articles AND menu.menu_id = "'. $sansize->getrequestInt("menu_id").'"');
+echo json_encode(count($art_menu));
