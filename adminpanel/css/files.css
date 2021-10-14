@@ -1,63 +1,134 @@
-.images{
-  padding-top: 40px;
-  margin-bottom: 10px;
+.images {
+    padding-top: 40px;
+    margin-bottom: 10px;
 }
 
-.deleteF svg{
-
-  color: #333333;
-  font-size: 25pt;
-  background-color:#cccccc;
-  border-radius: 25px;
-  height: 22px;
-  width: 22px;
-  padding: 5px;
-  transition: 0.2s;
-  cursor: pointer;
-}
-.deleteF svg:hover{
-box-shadow:0px 1px 5px 3px rgba(0,0,0,0.60);
--webkit-box-shadow:0px 1px 5px 3px rgba(0,0,0,0.60);
--moz-box-shadow:0px 1px 5px 3px rgba(0,0,0,0.60);
-}
-.deleteF{
-  display: none;
-  height: 0px;
-  margin-bottom: 10px;
-  position: absolute;
-  z-index: 8000;
-  margin-left: -50px;
-  margin-top:-25px;
-  width: 0px;
-  border: none;
-  background-color: #ffffffff;
-}
-.images:hover .deleteF{
-display: block;
+.images .boxImage {
+    height: 80px;
+    overflow: hidden;
 }
 
-
-.deleteFilesDiv{
-  display: none;
-}
-.titleImg{
-  position: absolute;
-  background-color: #333333;
-  color: #ffffff;
-  padding: 5px;
-  border-radius:5px;
-  margin-left: 125px;
-  z-index: 8000;
-  display: none;
-}
-.images:hover .titleImg{
-display: block;
-}
-.descriptImg{
-  font-size: 12pt;
-}
-.copyUrl{
-  border: none;
-  margin: 5px;
+.images .dirBoxGallery {
+    margin-top: 25px;
+    width: 500px;
+    position: absolute;
 }
 
+.iconBoxDir {
+    position: absolute;
+    width: 600px;
+}
+
+.iconBoxDir .descriptImg {
+    position: absolute;
+    margin-left: -450px;
+    margin-top: -90px;
+}
+
+.iconBoxDir .buttonImg {
+    position: absolute;
+    margin-left: 140px;
+    margin-top: -120px;
+}
+
+.closeDirBox {
+    width: 250%;
+    margin-top: -35px;
+    position: absolute;
+    display: none;
+}
+
+.displayNone {
+    display: none !important;
+}
+
+.displayBlock {
+    display: flex !important;
+}
+
+.closeDirBox svg {
+    color: #333333;
+    font-size: 25pt;
+    background-color: #cccccc;
+    border-radius: 25px;
+    height: 22px;
+    width: 22px;
+    padding: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-left: 100%;
+}
+
+.closeDirBox svg:hover {
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+    -webkit-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+    -moz-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+}
+
+.deleteF svg {
+    color: #333333;
+    font-size: 25pt;
+    background-color: #cccccc;
+    border-radius: 25px;
+    height: 22px;
+    width: 22px;
+    padding: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+.deleteF svg:hover {
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+    -webkit-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+    -moz-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.60);
+}
+
+.deleteF {
+    display: none;
+    height: 0px;
+    margin-bottom: 10px;
+    position: absolute;
+    z-index: 8000;
+    margin-left: -50px;
+    margin-top: -25px;
+    width: 0px;
+    border: none;
+    background-color: #ffffffff;
+}
+
+.images:hover .deleteF {
+    display: block;
+}
+
+.deleteFilesDiv {
+    display: none;
+}
+
+.titleImg {
+    position: absolute;
+    background-color: #333333;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 125px;
+    z-index: 8000;
+    display: none;
+}
+
+.images:hover .titleImg {
+    display: block;
+}
+
+.descriptImg {
+    font-size: 12pt;
+}
+
+.copyUrl {
+    border: none;
+    margin: 5px;
+}
+
+.gallery {
+    width: 100%;
+}

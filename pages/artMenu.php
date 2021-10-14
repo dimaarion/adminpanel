@@ -22,4 +22,6 @@ foreach ($art_menu as $key => $value) {
  
 );
 }
+
+$rez = array_reverse($rez);
 echo json_encode($rez);

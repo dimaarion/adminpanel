@@ -27,4 +27,37 @@ class Files
             
         }
     }
+
+    public function createDir($url)
+    {
+        if($_REQUEST[$url] != ""){
+            if(!is_dir("../img/upload/".$_REQUEST[$url])){
+                mkdir("../img/upload/".$_REQUEST[$url], 0600);
+            }
+        }
+        
+    }
+
+    public function deleteDir()
+    {
+        $sansize = new Sansize();
+        $idfiles = $sansize->getrequest('idfiles');
+      
+        if (is_dir($idfiles)) { 
+            // $idfiles =  preg_replace("/[\.]+/","",$idfiles);
+            if ($idfiles) {
+
+               
+               try {
+                    @rmdir($idfiles);
+               } catch (\Throwable $th) {
+                   echo "Удалите все файлы из папки";
+               }
+           
+           
+            }
+        }else{
+            
+        }
+    }
 }

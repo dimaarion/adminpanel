@@ -28,6 +28,9 @@ function discriptReplaceBr() {
     }
 
 }
+
+
 $(document).ready(function () {
     discriptReplaceBr();
+    
 });
