@@ -5,10 +5,10 @@ $articleClassRow = new DSelect('article');
 $articleClassRows = new DSelect('article');
 $menu_class = new Menu();
 $metrika = new Metrika();
-
+$settings = new DSelect('settings');
 //Переменные
 
-$controller->limit = 4;
+$controller->limit = $settings->queryRow('settings_id',3)['name_site'];
 $controller->alias = $sansize->getrequest('alias');
 $controller->id = $sansize->getrequest('id');
 $menu_alias =  $menuClass->queryRow('alias', $controller->indexPage($controller->alias, ''));
